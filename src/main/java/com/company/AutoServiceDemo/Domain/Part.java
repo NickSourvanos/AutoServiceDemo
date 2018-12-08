@@ -10,13 +10,13 @@ public class Part {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "part_id")
+    @Column(name = "part_id", nullable = false)
     private Long partId;
 
-    @Column(name = "type")
+    @Column(name = "type", length = MAX_LENGTH)
     private String type;
 
-    @Column(name = "cost")
+    @Column(name = "cost", length = MAX_LENGTH)
     private Double cost;
 
     public Part(){}

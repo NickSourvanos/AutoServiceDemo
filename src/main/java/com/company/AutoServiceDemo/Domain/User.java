@@ -9,7 +9,7 @@ public class User {
     private static final int MAX_LENGTH = 40;
 
     @Id
-    @Column(name = "user_id")
+    @Column(name = "user_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

@@ -11,23 +11,23 @@ public class Repair {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "service_id")
+    @Column(name = "service_id", nullable = false)
     private Long serviceId;
 
-    @Column(name = "repair_date")
+    @Column(name = "repair_date", length = MAX_LENGTH)
     private Date repairDate;
 
-    @Column(name = "status")
+    @Column(name = "status", length = MAX_LENGTH)
     private Boolean status;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "repair_type")
     private RepairType repairType;
 
-    @Column(name = "cost")
+    @Column(name = "cost", length = MAX_LENGTH)
     private Double cost;
 
-    @Column(name = "description")
+    @Column(name = "description", length = MAX_LENGTH)
     private String description;
 
     @ManyToOne(optional = false)
@@ -36,11 +36,11 @@ public class Repair {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "vehicle_id")
-    private User vehicleId;
+    private Vehicle vehicleId;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "part_id")
-    private User partId;
+    private Part partId;
 
     public Repair(){}
 
@@ -100,19 +100,19 @@ public class Repair {
         this.userId = userId;
     }
 
-    public User getVehicleId() {
+    public Vehicle getVehicleId() {
         return vehicleId;
     }
 
-    public void setVehicleId(User vehicleId) {
+    public void setVehicleId(Vehicle vehicleId) {
         this.vehicleId = vehicleId;
     }
 
-    public User getPartId() {
+    public Part getPartId() {
         return partId;
     }
 
-    public void setPartId(User partId) {
+    public void setPartId(Part partId) {
         this.partId = partId;
     }
 

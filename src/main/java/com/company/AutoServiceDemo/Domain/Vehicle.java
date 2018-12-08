@@ -4,26 +4,26 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "VEHICLE")
+@Table(name = "VEHICLE", uniqueConstraints = @UniqueConstraint(columnNames = {"plate_number"}))
 public class Vehicle {
 
     private static final int MAX_LENGTH = 40;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "vehicle_id")
+    @Column(name = "vehicle_id", nullable = false)
     private Long vehicleId;
 
-    @Column(name = "plate_number")
+    @Column(name = "plate_number", length = MAX_LENGTH)
     private String plateNUmber;
 
-    @Column(name = "model")
+    @Column(name = "model", length = MAX_LENGTH)
     private String model;
 
-    @Column(name = "year_of_manufacture")
-    private Date yearOfManufacture;
+    @Column(name = "year_of_manufacture", length = 4)
+    private String yearOfManufacture;
 
-    @Column(name = "color")
+    @Column(name = "color", length = MAX_LENGTH)
     private String color;
 
     public Vehicle(){}
@@ -52,11 +52,11 @@ public class Vehicle {
         this.model = model;
     }
 
-    public Date getYearOfManufacture() {
+    public String getYearOfManufacture() {
         return yearOfManufacture;
     }
 
-    public void setYearOfManufacture(Date yearOfManufacture) {
+    public void setYearOfManufacture(String yearOfManufacture) {
         this.yearOfManufacture = yearOfManufacture;
     }
 
