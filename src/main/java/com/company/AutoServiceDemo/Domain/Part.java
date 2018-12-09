@@ -1,6 +1,7 @@
 package com.company.AutoServiceDemo.Domain;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "PART")
@@ -18,6 +19,9 @@ public class Part {
 
     @Column(name = "cost", length = MAX_LENGTH)
     private Double cost;
+
+    @OneToMany(mappedBy = "part", targetEntity = Repair.class)
+    private List<Repair> repairs;
 
     public Part(){}
 
@@ -45,12 +49,21 @@ public class Part {
         this.cost = cost;
     }
 
+    public List<Repair> getRepairs() {
+        return repairs;
+    }
+
+    public void setRepairs(List<Repair> repairs) {
+        this.repairs = repairs;
+    }
+
     @Override
     public String toString() {
         return "Part{" +
                 "partId=" + partId +
                 ", type='" + type + '\'' +
                 ", cost=" + cost +
+                ", repairs=" + repairs +
                 '}';
     }
 }

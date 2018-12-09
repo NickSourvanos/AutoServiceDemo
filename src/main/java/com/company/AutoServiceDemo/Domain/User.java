@@ -1,6 +1,7 @@
 package com.company.AutoServiceDemo.Domain;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "USER", uniqueConstraints = {@UniqueConstraint(columnNames = {"afm"})})
@@ -31,9 +32,11 @@ public class User {
     @Column(name = "password", length = MAX_LENGTH)
     private String password;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "role_id")
-    private Role roleId;
+    @Column(name = "role_type")
+    private String roleType;
+
+    @OneToMany(mappedBy = "user", targetEntity = Repair.class)
+    private List<Repair> repairs;
 
     public User() {}
 
@@ -89,24 +92,34 @@ public class User {
         this.password = password;
     }
 
-    public Role getRoleId() {
-        return roleId;
+    public String getRoleType() {
+        return roleType;
     }
 
-    public void setRoleId(Role roleId) {
-        this.roleId = roleId;
+    public void setRoleType(String roleType) {
+        this.roleType = roleType;
+    }
+
+    public List<Repair> getRepairs() {
+        return repairs;
+    }
+
+    public void setRepairs(List<Repair> repairs) {
+        this.repairs = repairs;
     }
 
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
+                ", afm='" + afm + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", address='" + address + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", roleId=" + roleId +
+                ", roleType=" + roleType +
+                ", repairs=" + repairs +
                 '}';
     }
 }

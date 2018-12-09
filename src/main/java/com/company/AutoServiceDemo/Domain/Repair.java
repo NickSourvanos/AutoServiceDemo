@@ -1,5 +1,7 @@
 package com.company.AutoServiceDemo.Domain;
 
+import com.company.AutoServiceDemo.enums.RepairType;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -20,9 +22,8 @@ public class Repair {
     @Column(name = "status", length = MAX_LENGTH)
     private Boolean status;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "repair_type")
-    private RepairType repairType;
+    private String repairType;
 
     @Column(name = "cost", length = MAX_LENGTH)
     private Double cost;
@@ -32,15 +33,15 @@ public class Repair {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "user_id")
-    private User userId;
+    private User user;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "vehicle_id")
-    private Vehicle vehicleId;
+    private Vehicle vehicle;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "part_id")
-    private Part partId;
+    private Part part;
 
     public Repair(){}
 
@@ -68,11 +69,11 @@ public class Repair {
         this.status = status;
     }
 
-    public RepairType getRepairType() {
+    public String getRepairType() {
         return repairType;
     }
 
-    public void setRepairType(RepairType repairType) {
+    public void setRepairType(String repairType) {
         this.repairType = repairType;
     }
 
@@ -92,42 +93,42 @@ public class Repair {
         this.description = description;
     }
 
-    public User getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(User userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Vehicle getVehicleId() {
-        return vehicleId;
+    public Vehicle getVehicle() {
+        return vehicle;
     }
 
-    public void setVehicleId(Vehicle vehicleId) {
-        this.vehicleId = vehicleId;
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 
-    public Part getPartId() {
-        return partId;
+    public Part getPart() {
+        return part;
     }
 
-    public void setPartId(Part partId) {
-        this.partId = partId;
+    public void setPart(Part part) {
+        this.part = part;
     }
 
     @Override
     public String toString() {
-        return "Services{" +
+        return "Repair{" +
                 "serviceId=" + serviceId +
                 ", repairDate=" + repairDate +
                 ", status=" + status +
                 ", repairType=" + repairType +
                 ", cost=" + cost +
                 ", description='" + description + '\'' +
-                ", userId=" + userId +
-                ", vehicleId=" + vehicleId +
-                ", partId=" + partId +
+                ", user=" + user +
+                ", vehicle=" + vehicle +
+                ", part=" + part +
                 '}';
     }
 }

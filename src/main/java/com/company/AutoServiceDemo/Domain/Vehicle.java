@@ -2,6 +2,7 @@ package com.company.AutoServiceDemo.Domain;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "VEHICLE", uniqueConstraints = @UniqueConstraint(columnNames = {"plate_number"}))
@@ -25,6 +26,9 @@ public class Vehicle {
 
     @Column(name = "color", length = MAX_LENGTH)
     private String color;
+
+    @OneToMany(mappedBy = "part", targetEntity = Repair.class)
+    private List<Repair> repairs;
 
     public Vehicle(){}
 
@@ -68,14 +72,23 @@ public class Vehicle {
         this.color = color;
     }
 
+    public List<Repair> getRepairs() {
+        return repairs;
+    }
+
+    public void setRepairs(List<Repair> repairs) {
+        this.repairs = repairs;
+    }
+
     @Override
     public String toString() {
         return "Vehicle{" +
                 "vehicleId=" + vehicleId +
                 ", plateNUmber='" + plateNUmber + '\'' +
                 ", model='" + model + '\'' +
-                ", yearOfManufacture=" + yearOfManufacture +
+                ", yearOfManufacture='" + yearOfManufacture + '\'' +
                 ", color='" + color + '\'' +
+                ", repairs=" + repairs +
                 '}';
     }
 }
