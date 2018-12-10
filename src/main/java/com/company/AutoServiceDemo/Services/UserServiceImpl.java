@@ -1,7 +1,7 @@
 package com.company.AutoServiceDemo.Services;
 
-import com.company.AutoServiceDemo.enums.RoleType;
 import com.company.AutoServiceDemo.Domain.User;
+import com.company.AutoServiceDemo.Enums.RoleType;
 import com.company.AutoServiceDemo.Repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    public List<User> getAllByRoleType(String roleType) {
+    public List<User> getAllByRoleType(RoleType roleType) {
         return userRepository.getAllByRoleType(roleType);
     }
 
@@ -36,6 +36,15 @@ public class UserServiceImpl implements UserService {
         return deleteUser(user);
     }
 
+    @Override
+    public User findUserByAfm(String afm) {
+        return userRepository.findUserByAfm(afm);
+    }
+
+    @Override
+    public User findUserByEmail(String email) {
+        return userRepository.findUserByEmail(email);
+    }
 
 
 

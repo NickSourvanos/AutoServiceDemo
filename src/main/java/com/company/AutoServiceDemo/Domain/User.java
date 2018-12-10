@@ -1,5 +1,7 @@
 package com.company.AutoServiceDemo.Domain;
 
+import com.company.AutoServiceDemo.Enums.RoleType;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -32,13 +34,25 @@ public class User {
     @Column(name = "password", length = MAX_LENGTH)
     private String password;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "role_type")
-    private String roleType;
+    private RoleType roleType;
 
-    @OneToMany(mappedBy = "user", targetEntity = Repair.class)
-    private List<Repair> repairs;
+    @OneToMany(mappedBy = "user", targetEntity = Vehicle.class)
+    private List<Vehicle> vehicles;
 
     public User() {}
+
+    public User(String afm, String firstName, String lastName, String address, String email, String password, RoleType roleType, List<Vehicle> vehicles) {
+        this.afm = afm;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.email = email;
+        this.password = password;
+        this.roleType = roleType;
+        this.vehicles = vehicles;
+    }
 
     public Long getId() {
         return id;
@@ -92,20 +106,20 @@ public class User {
         this.password = password;
     }
 
-    public String getRoleType() {
+    public RoleType getRoleType() {
         return roleType;
     }
 
-    public void setRoleType(String roleType) {
+    public void setRoleType(RoleType roleType) {
         this.roleType = roleType;
     }
 
-    public List<Repair> getRepairs() {
-        return repairs;
+    public List<Vehicle> getVehicles() {
+        return vehicles;
     }
 
-    public void setRepairs(List<Repair> repairs) {
-        this.repairs = repairs;
+    public void setVehicles(List<Vehicle> vehicles) {
+        this.vehicles = vehicles;
     }
 
     @Override
@@ -119,7 +133,7 @@ public class User {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", roleType=" + roleType +
-                ", repairs=" + repairs +
+                ", vehicles=" + vehicles +
                 '}';
     }
 }

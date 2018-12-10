@@ -27,10 +27,23 @@ public class Vehicle {
     @Column(name = "color", length = MAX_LENGTH)
     private String color;
 
-    @OneToMany(mappedBy = "part", targetEntity = Repair.class)
+    @OneToMany(mappedBy = "vehicle", targetEntity = Repair.class)
     private List<Repair> repairs;
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user_id")
+    private User user;
+
     public Vehicle(){}
+
+    public Vehicle(String plateNUmber, String model, String yearOfManufacture, String color, List<Repair> repairs, User user) {
+        this.plateNUmber = plateNUmber;
+        this.model = model;
+        this.yearOfManufacture = yearOfManufacture;
+        this.color = color;
+        this.repairs = repairs;
+        this.user = user;
+    }
 
     public Long getVehicleId() {
         return vehicleId;
@@ -80,6 +93,14 @@ public class Vehicle {
         this.repairs = repairs;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public String toString() {
         return "Vehicle{" +
@@ -89,6 +110,7 @@ public class Vehicle {
                 ", yearOfManufacture='" + yearOfManufacture + '\'' +
                 ", color='" + color + '\'' +
                 ", repairs=" + repairs +
+                ", users=" + user +
                 '}';
     }
 }
