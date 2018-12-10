@@ -13,11 +13,10 @@ public interface UserService {
 
     User saveUser(User user);
 
-    User deleteUser(User user);
+    void deleteUser(User user);
 
     User findUserByAfm(String afm);
 
     User findUserByEmail(String email);
-
 
 }

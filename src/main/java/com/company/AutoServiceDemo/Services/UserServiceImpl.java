@@ -21,6 +21,10 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
+    @Override
+    public void deleteUser(User user) {
+        userRepository.delete(user);
+    }
 
     public List<User> getAllByRoleType(RoleType roleType) {
         return userRepository.getAllByRoleType(roleType);
@@ -29,11 +33,6 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public User getUserByFirstNameAndLastName(String firstName, String lastName) {
         return userRepository.getUserByFirstNameAndLastName(firstName, lastName);
-    }
-
-    @Transactional
-    public User deleteUser(User user){
-        return deleteUser(user);
     }
 
     @Override
@@ -45,7 +44,5 @@ public class UserServiceImpl implements UserService {
     public User findUserByEmail(String email) {
         return userRepository.findUserByEmail(email);
     }
-
-
 
 }

@@ -12,6 +12,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.security.Provider;
 import java.util.List;
 
 @SpringBootApplication
@@ -34,9 +35,25 @@ public class AutoServiceDemoApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 
-		User user = userService.getUserByFirstNameAndLastName("Peter", "Peri");
-		System.out.println(user.getId());
+		//Add car to service
+		Vehicle vehicle = vehicleService.findVehicleByPlateNUmber("QWE-1234");
 
+		//List<Repair> repairs = vehicleService
+
+
+		/*
+		User user = userService.getUserByFirstNameAndLastName("Tom", "Koumassis");
+
+		userService.deleteUser(user);
+
+		List<User> users = userService.getAllByRoleType(RoleType.SIMPLE_USER_ROLE);
+		for(User u : users){
+			System.out.println("First Name: " + u.getFirstName() + ", Last Name: " + u.getLastName());
+		}
+		//Delete user
+		/*User user = userService.getUserByFirstNameAndLastName("Peter", "Peri");
+
+		userService.deleteUser(user);*/
 		/*
 		List<User> users = userService.getAllByRoleType(RoleType.SIMPLE_USER_ROLE);
 		for(User user : users){
