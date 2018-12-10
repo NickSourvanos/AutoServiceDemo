@@ -20,7 +20,7 @@ public class RepairServiceImpl implements RepairService {
     }
 
     @Override
-    public Repair saveRepair(Vehicle vehicle) {
-        return null;
+    public Repair saveRepair(Repair repair) {
+        return repairRepository.save(repair);
     }
 }

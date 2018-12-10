@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<#import "/spring.ftl" as spring/>
 <html>
 <header>
     <meta charset="utf-8" />
@@ -125,7 +126,6 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-
                     <div class="col-sm-12 col-md-12 col-lg-12">
                         <div class="card ">
                             <div class="card-header ">
@@ -138,20 +138,24 @@
                                 <table class="table table-hover">
                                     <thead>
                                     <tr>
-                                        <th>Email</th>
                                         <th>First Name</th>
                                         <th>Last Name</th>
+                                        <th>Email</th>
                                         <th>Manage</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <#list users as u>
                                         <tr>
-                                            <td>${u.getEmail()}</td>
                                             <td>${u.getFirstName()}</td>
                                             <td>${u.getLastName()}</td>
-                                            <td><a style="color:black;" class="nav-link" href="">
-                                                    <i class="fa fa-edit" style="font-size:24px; text-align: center"></i></a></td>
+                                            <td>${u.getEmail()}</td>
+                                            <td style="padding-left: 1.5em;">
+                                                <button name="manageUser" class="btn"
+                                                        data-toggle="modal" data-target="#editUser" onclick="updateuser(${u.getId()})">
+                                                    <i class="fa fa-edit" style="font-size:24px; text-align: center"></i>
+                                                </button>
+                                            </td>
                                         </tr>
 
                                     </#list>
@@ -176,6 +180,33 @@
     </div>
 </div>
 
+<script>
+
+    function updateuser(userId){
+
+        $.ajax({
+            type: 'POST',
+            url: 'http://localhost:8080/api/user?id='+userId,
+            success: function(result){
+                document.getElementById('afm').value = result.afm;
+                document.getElementById('email').value = result.email;
+                document.getElementById('firstName').value = result.firstName;
+                document.getElementById('lastName').value = result.lastName;
+                document.getElementById('password').value = result.password;
+                document.getElementById('password2').value = result.password2;
+                if(result.role === "SIMPLE_ROLE_TYPE"){
+                    document.getElementsByName('role').value = "SIMPLE_USER_ROLE";
+                }if(result.role === "ADMIN_ROLE"){
+                    document.getElementsByName('role').value = "ADMIN_ROLE";
+                }
+            }
+        });
+
+    }
+
+</script>
+
+
 <div class="modal fade" id="addUserForm" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content ">
@@ -185,8 +216,8 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <form id="addUserForm" class="form-horizontal" action="AddUserController" method="POST">
+            <form id="addUserForm" name="user" class="form-horizontal" action="AddUserController" method="POST">
+                <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -225,7 +256,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="password2">Re-enter password</label>
-                                <input type="password" name="password2" class="form-control" placeholder="Re-enter password">
+                                <input type="password" name="password2" class="form-control" placeholder="Re-enter password" required="true">
                             </div>
                         </div>
                     </div>
@@ -234,22 +265,98 @@
                             <div class="form-group">
                                 <label for="language">Role</label>
                                 <select name="language" class="form-control">
-                                    <option name="admin" value="admin">Admin</option>
-                                    <option name="simpleUser" value="simple_user">User</option>
+                                    <option name="admin" value="ADMIN_ROLE">Admin</option>
+                                    <option name="simpleUser" value="SIMPLE_USER_ROLE">User</option>
                                 </select>
                             </div>
                         </div>
                     </div>
-
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="document.getElementById('addUserForm').submit();">Create User</button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" onclick="document.getElementById('addUserForm').submit();">Create User</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
+
+
+<div class="modal fade" id="editUser" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit User</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="editUserForm">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="afm">AFM</label>
+                                <input id="afm" type="text" name="afm" class="form-control" placeholder="Enter AFM" required="true">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input id="email" type="email" name="email" class="form-control" placeholder="Enter email" required="true">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input id="firstName" type="text" name="firstName" class="form-control" placeholder="Enter first name" required="true">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input id="lastName" type="text" name="lastName" class="form-control" placeholder="Enter last name" required="true">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input id="password" type="password" name="password" class="form-control" placeholder="Enter password" required="true">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="password2">Re-enter password</label>
+                                <input id="password2" type="password" name="password2" class="form-control" placeholder="Re-enter password" required="true">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="roleType">Role</label>
+                                <select name="roleType" class="form-control">
+                                    <option name="admin" value="ADMIN_ROLE">Admin</option>
+                                    <option name="user" value="SIMPLE_USER_ROLE">User</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" onclick="document.getElementById('addUserForm').submit();">Create User</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
 
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>

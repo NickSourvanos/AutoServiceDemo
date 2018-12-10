@@ -1,12 +1,13 @@
 package com.company.AutoServiceDemo.Domain;
 
 import com.company.AutoServiceDemo.Enums.RoleType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "USER", uniqueConstraints = {@UniqueConstraint(columnNames = {"afm"})})
+@Table(name = "USER", uniqueConstraints = {@UniqueConstraint(columnNames = {"afm", "email"})})
 public class User {
 
     private static final int MAX_LENGTH = 40;
@@ -38,6 +39,7 @@ public class User {
     @Column(name = "role_type")
     private RoleType roleType;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user", targetEntity = Vehicle.class)
     private List<Vehicle> vehicles;
 

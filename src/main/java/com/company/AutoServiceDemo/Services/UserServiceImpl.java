@@ -7,8 +7,10 @@ import com.company.AutoServiceDemo.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.swing.text.html.Option;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class UserServiceImpl implements UserService {
@@ -44,5 +46,11 @@ public class UserServiceImpl implements UserService {
     public User findUserByEmail(String email) {
         return userRepository.findUserByEmail(email);
     }
+
+    @Override
+    public User getUserById(Long id) {
+        return userRepository.getUserById(id);
+    }
+
 
 }

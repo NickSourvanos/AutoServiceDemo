@@ -10,5 +10,7 @@ public interface RepairService {
 
     List<Repair> getAllByVehicle(Vehicle vehicle);
 
-    Repair saveRepair(Vehicle vehicle);
+    Repair saveRepair(Repair repair);
+
+
 }

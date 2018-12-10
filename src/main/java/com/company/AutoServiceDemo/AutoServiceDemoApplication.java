@@ -1,22 +1,29 @@
 package com.company.AutoServiceDemo;
 
+import com.company.AutoServiceDemo.Domain.Part;
 import com.company.AutoServiceDemo.Domain.Repair;
 import com.company.AutoServiceDemo.Domain.User;
 import com.company.AutoServiceDemo.Domain.Vehicle;
+import com.company.AutoServiceDemo.Enums.RepairType;
 import com.company.AutoServiceDemo.Enums.RoleType;
+import com.company.AutoServiceDemo.Services.PartService;
 import com.company.AutoServiceDemo.Services.RepairService;
 import com.company.AutoServiceDemo.Services.UserService;
 import com.company.AutoServiceDemo.Services.VehicleService;
+import org.apache.velocity.exception.ResourceNotFoundException;
+import org.hibernate.exception.DataException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.security.Provider;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @SpringBootApplication
-public class AutoServiceDemoApplication implements CommandLineRunner{
+public class AutoServiceDemoApplication {
 
 	@Autowired
 	private UserService userService;
@@ -27,16 +34,45 @@ public class AutoServiceDemoApplication implements CommandLineRunner{
 	@Autowired
 	private RepairService repairService;
 
+	@Autowired
+	private PartService partService;
+
 	public static void main(String[] args) {
 		SpringApplication.run(AutoServiceDemoApplication.class, args);
 	}
 
-
+/*
 	@Override
 	public void run(String... args) throws Exception {
-
-		//Add car to service
+		User user = userService.findById(1L).orElseThrow(() -> new ResourceNotFoundException("User not found" + 1L));
+		System.out.println(user.getAfm());
+		/*
+		//Add service, car and part
 		Vehicle vehicle = vehicleService.findVehicleByPlateNUmber("QWE-1234");
+		Part part = partService.findByType("pads");
+
+
+		Repair repair = new Repair();
+		repair.setCost(20.00);
+		repair.setDescription("Service");
+		repair.setRepairDate("2018-12-10");
+		repair.setRepairType(RepairType.MINOR_REPAIR);
+		repair.setStatus(true);
+		repair.setVehicle(vehicle);
+		repair.setPart(part);
+
+		repairService.saveRepair(repair);
+
+		List<Repair> repairs = repairService.getAllByVehicle(vehicle);
+		for(Repair rep : repairs){
+			System.out.println("Repair: " + rep.getRepairType() + ", Status: " + rep.getStatus()
+					+ ", Part: " + rep.getPart().getType());
+		}
+
+		/*
+		Vehicle vehicle = vehicleService.findVehicleByPlateNUmber("QWE-1234");
+
+
 
 		List<Repair> repairs = repairService.getAllByVehicle(vehicle);
 		for(Repair rep : repairs){
@@ -105,8 +141,8 @@ public class AutoServiceDemoApplication implements CommandLineRunner{
 
 		//delete user
 		//userService.deleteUserById(user.getId());
-		*/
 
 
-	}
+
+	}*/
 }

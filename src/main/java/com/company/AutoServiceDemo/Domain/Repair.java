@@ -18,7 +18,7 @@ public class Repair {
     private Long repairId;
 
     @Column(name = "repair_date", length = MAX_LENGTH)
-    private Date repairDate;
+    private String repairDate;
 
     @Column(name = "status", length = MAX_LENGTH)
     private Boolean status;
@@ -53,11 +53,11 @@ public class Repair {
         this.repairId = repairId;
     }
 
-    public Date getRepairDate() {
+    public String getRepairDate() {
         return repairDate;
     }
 
-    public void setRepairDate(Date repairDate) {
+    public void setRepairDate(String repairDate) {
         this.repairDate = repairDate;
     }
 
