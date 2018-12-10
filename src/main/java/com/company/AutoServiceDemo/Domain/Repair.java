@@ -4,17 +4,18 @@ import com.company.AutoServiceDemo.Enums.RepairType;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table(name = "SERVICE")
+@Table(name = "REPAIR")
 public class Repair {
 
     private static final int MAX_LENGTH = 40;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "service_id", nullable = false)
-    private Long serviceId;
+    @Column(name = "repair_id", nullable = false)
+    private Long repairId;
 
     @Column(name = "repair_date", length = MAX_LENGTH)
     private Date repairDate;
@@ -32,9 +33,11 @@ public class Repair {
     @Column(name = "description", length = MAX_LENGTH)
     private String description;
 
+
     @ManyToOne(optional = false)
     @JoinColumn(name = "vehicle_id")
     private Vehicle vehicle;
+
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "part_id")
@@ -42,22 +45,12 @@ public class Repair {
 
     public Repair(){}
 
-    public Repair(Date repairDate, Boolean status, RepairType repairType, Double cost, String description, Vehicle vehicle, Part part) {
-        this.repairDate = repairDate;
-        this.status = status;
-        this.repairType = repairType;
-        this.cost = cost;
-        this.description = description;
-        this.vehicle = vehicle;
-        this.part = part;
+    public Long getRepairId() {
+        return repairId;
     }
 
-    public Long getServiceId() {
-        return serviceId;
-    }
-
-    public void setServiceId(Long serviceId) {
-        this.serviceId = serviceId;
+    public void setRepairId(Long repairId) {
+        this.repairId = repairId;
     }
 
     public Date getRepairDate() {
@@ -100,7 +93,7 @@ public class Repair {
         this.description = description;
     }
 
-   public Vehicle getVehicle() {
+    public Vehicle getVehicle() {
         return vehicle;
     }
 
@@ -119,7 +112,7 @@ public class Repair {
     @Override
     public String toString() {
         return "Repair{" +
-                "serviceId=" + serviceId +
+                "repairId=" + repairId +
                 ", repairDate=" + repairDate +
                 ", status=" + status +
                 ", repairType=" + repairType +

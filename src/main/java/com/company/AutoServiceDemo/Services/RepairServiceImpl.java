@@ -18,4 +18,9 @@ public class RepairServiceImpl implements RepairService {
     public List<Repair> getAllByVehicle(Vehicle vehicle) {
         return repairRepository.getAllByVehicle(vehicle);
     }
+
+    @Override
+    public Repair saveRepair(Vehicle vehicle) {
+        return null;
+    }
 }

@@ -38,7 +38,11 @@ public class AutoServiceDemoApplication implements CommandLineRunner{
 		//Add car to service
 		Vehicle vehicle = vehicleService.findVehicleByPlateNUmber("QWE-1234");
 
-		//List<Repair> repairs = vehicleService
+		List<Repair> repairs = repairService.getAllByVehicle(vehicle);
+		for(Repair rep : repairs){
+			System.out.println("Repair: " + rep.getRepairType() + ", Status: " + rep.getStatus()
+				+ ", Part: " + rep.getPart().getType());
+		}
 
 
 		/*

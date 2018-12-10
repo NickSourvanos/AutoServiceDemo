@@ -25,12 +25,6 @@ public class Part {
 
     public Part(){}
 
-    public Part(String type, Double cost, List<Repair> repairs) {
-        this.type = type;
-        this.cost = cost;
-        this.repairs = repairs;
-    }
-
     public Long getPartId() {
         return partId;
     }
