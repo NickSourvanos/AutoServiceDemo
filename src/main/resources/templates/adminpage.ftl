@@ -176,6 +176,7 @@
             success: function(result){
                 var users_data = '';
                 result.forEach(function(d){
+                    alert(d.id);
                     users_data += "<tr>";
                     users_data += '<td>' + d.firstName + '</td>';
                     users_data += '<td>' + d.lastName + '</td>';
@@ -205,11 +206,11 @@
                 document.getElementById('lastName').value = result.lastName;
                 document.getElementById('password').value = result.password;
                 document.getElementById('password2').value = result.password2;
-                if(result.role === "SIMPLE_ROLE_TYPE"){
+                /*if(result.role === "SIMPLE_ROLE_TYPE"){
                     document.getElementsByName('role').value = "SIMPLE_USER_ROLE";
                 }if(result.role === "ADMIN_ROLE"){
                     document.getElementsByName('role').value = "ADMIN_ROLE";
-                }
+                }*/
             }
         });
 
@@ -291,7 +292,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" onclick="document.getElementById('addUserForm').submit();">Create User</button>
+                    <button class="btn btn-primary">Create User</button>
                 </div>
             </form>
         </div>
