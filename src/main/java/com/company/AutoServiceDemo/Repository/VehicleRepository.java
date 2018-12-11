@@ -8,12 +8,8 @@ import java.util.List;
 
 public interface VehicleRepository extends JpaRepository<Vehicle, Long> {
 
-    List<Vehicle> getAllBy();
-
     List<Vehicle> getAllByUser(User user);
 
     Vehicle findVehicleByPlateNUmber(String plateNumber);
-
-
 
 }

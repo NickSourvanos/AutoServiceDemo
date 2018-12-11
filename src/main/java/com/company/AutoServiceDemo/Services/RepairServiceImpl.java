@@ -6,6 +6,7 @@ import com.company.AutoServiceDemo.Repository.RepairRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Component
@@ -14,12 +15,7 @@ public class RepairServiceImpl implements RepairService {
     @Autowired
     RepairRepository repairRepository;
 
-    @Override
-    public List<Repair> getAllByVehicle(Vehicle vehicle) {
-        return repairRepository.getAllByVehicle(vehicle);
-    }
-
-    @Override
+    @Transactional
     public Repair saveRepair(Repair repair) {
         return repairRepository.save(repair);
     }
