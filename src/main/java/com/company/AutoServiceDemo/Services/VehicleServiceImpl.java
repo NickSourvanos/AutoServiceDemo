@@ -16,11 +16,6 @@ public class VehicleServiceImpl implements VehicleService{
     VehicleRepository vehicleRepository;
 
     @Override
-    public List<Vehicle> getAllBy() {
-        return vehicleRepository.getAllBy();
-    }
-
-    @Override
     public List<Vehicle> getAllByUser(User user) {
         return vehicleRepository.getAllByUser(user);
     }
@@ -34,6 +29,8 @@ public class VehicleServiceImpl implements VehicleService{
     public Vehicle saveVehicle(Vehicle vehicle) {
         return vehicleRepository.save(vehicle);
     }
+
+
 
 
 }

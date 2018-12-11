@@ -7,11 +7,13 @@ import java.util.List;
 
 public interface VehicleService {
 
-    List<Vehicle> getAllBy();
-
     List<Vehicle> getAllByUser(User user);
 
     Vehicle findVehicleByPlateNUmber(String plateNumber);
 
     Vehicle saveVehicle(Vehicle vehicle);
+
+
+
+
 }

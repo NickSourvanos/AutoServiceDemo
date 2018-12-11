@@ -142,7 +142,6 @@
                                         <th>Last Name</th>
                                         <th>Email</th>
                                         <th>Manage</th>
-                                        <th>Vehicles</th>
                                     </tr>
                                     </thead>
                                     <tbody id="usersList">
@@ -182,30 +181,16 @@
                     users_data += '<td>' + d.lastName + '</td>';
                     users_data += '<td>' + d.email + '</td>';
                     users_data += '<td style="padding-left: 1.5em;">' +
-                        '<button class="btn" data-toggle="modal" data-target="#editUser" ' +
-                        'onclick="updateuser(' + d.id + ')" >'+
+                        '<button class="btn" data-toggle="modal" data-target="#editUser" onclick="' + updateuser(d.id) + '">'+
                         '<i class="fa fa-edit" style="font-size:24px; text-align: center"></i>'+
                         '</button>' +
                         '</td>';
-                    users_data += '<td style="padding-left: 1.5em;">' +
-                        '<button class="btn" onclick="viewvehicles(' + result + ')">'+
-                        '<i class="fa fa-edit" style="font-size:24px; text-align: center"></i>'+
-                        '</button>' +
-                        '</td>';*/
                     users_data += '</tr>';
                 });
                 $('#usersList').html(users_data);
             }
         });
     });
-
-    function viewvehicles(result){
-        $.ajax({
-            type: 'POST',
-            url: 'http://localhost:8080/api/vehicle'
-        });
-
-    }
 
     function updateuser(userId){
 
@@ -305,7 +290,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button class="btn btn-primary">Create User</button>
+                    <button type="submit" class="btn btn-primary" onclick="document.getElementById('addUserForm').submit();">Create User</button>
                 </div>
             </form>
         </div>
