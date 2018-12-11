@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<#import "/spring.ftl" as spring/>
 <html>
 <header>
     <meta charset="utf-8" />
@@ -46,11 +45,12 @@
 
         .footer{
             background-color: #E8E8E8;
-            min-height: 85px;
+            max-height: 4.9em;
         }
 
         .modal-lg{
             max-width: 80%;
+
         }
 
 
@@ -132,7 +132,7 @@
                                 <h4 class="card-title">Users</h4></br>
 
                                 <button id="students" class="btn btn-primary"
-                                        data-toggle="modal" data-target="#addUserForm">Add User</button>
+                                        data-toggle="modal" data-target="#addUserFormModal">Add User</button>
                             </div>
                             <div id="booksTable" class="card-body table-full-width table-responsive">
                                 <table class="table table-hover">
@@ -144,21 +144,8 @@
                                         <th>Manage</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
-                                    <#list users as u>
-                                        <tr>
-                                            <td>${u.getFirstName()}</td>
-                                            <td>${u.getLastName()}</td>
-                                            <td>${u.getEmail()}</td>
-                                            <td style="padding-left: 1.5em;">
-                                                <button name="manageUser" class="btn"
-                                                        data-toggle="modal" data-target="#editUser" onclick="updateuser(${u.getId()})">
-                                                    <i class="fa fa-edit" style="font-size:24px; text-align: center"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
+                                    <tbody id="usersList">
 
-                                    </#list>
                                     </tbody>
 
                                 </table>
@@ -172,8 +159,8 @@
         </div>
         <footer class="footer">
             <div class="container">
-                <p class="copyright text-center" style="font-size: 11px;">
-                    <span><img style="width: 35px;" src=""></span>
+                <p class="copyright text-center" style="font-size: 13px;">
+                    <span><img style="width: 35px;" src=""></span>Auto Service Site</br>Welcome
                 </p>
             </div>
         </footer>
@@ -181,6 +168,30 @@
 </div>
 
 <script>
+
+    $(document).ready(function () {
+        $.ajax({
+            type: 'GET',
+            url: 'http://localhost:8080/api/users',
+            success: function(result){
+                var users_data = '';
+                result.forEach(function(d){
+                    users_data += "<tr>";
+                    users_data += '<td>' + d.firstName + '</td>';
+                    users_data += '<td>' + d.lastName + '</td>';
+                    users_data += '<td>' + d.email + '</td>';
+                    users_data += '<td style="padding-left: 1.5em;">' +
+                        '<button class="btn"'+
+                    "data-toggle='modal' data-target='#editUser' onclick='" + updateuser(d.id) + "'>"+
+                        "<i class='fa fa-edit' style='font-size:24px; text-align: center'></i>"+
+                        "</button>" +
+                        "</td>";
+                    users_data += '</tr>';
+                });
+                $('#usersList').html(users_data);
+            }
+        });
+    });
 
     function updateuser(userId){
 
@@ -207,7 +218,7 @@
 </script>
 
 
-<div class="modal fade" id="addUserForm" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="addUserFormModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content ">
             <div class="modal-header">
@@ -216,7 +227,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="addUserForm" name="user" class="form-horizontal" action="AddUserController" method="POST">
+            <form id="addUserForm" name="addUserForm" class="form-horizontal" action="/createUser" method="POST">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
@@ -227,8 +238,8 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="firstName">Email</label>
-                                <input type="email" name="firstName" class="form-control" placeholder="Enter email" required="true">
+                                <label for="email">Email</label>
+                                <input type="email" name="email" class="form-control" placeholder="Enter email" required="true">
                             </div>
                         </div>
                     </div>
@@ -263,8 +274,14 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="language">Role</label>
-                                <select name="language" class="form-control">
+                                <label for="address">Address</label>
+                                <input type="text" name="address" class="form-control" placeholder="Enter address" required="true">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="roleType">Role</label>
+                                <select name="roleType" class="form-control">
                                     <option name="admin" value="ADMIN_ROLE">Admin</option>
                                     <option name="simpleUser" value="SIMPLE_USER_ROLE">User</option>
                                 </select>
