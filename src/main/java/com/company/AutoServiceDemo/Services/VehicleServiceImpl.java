@@ -25,6 +25,11 @@ public class VehicleServiceImpl implements VehicleService{
         return vehicleRepository.findVehicleByPlateNUmber(plateNumber);
     }
 
+    @Override
+    public List<Vehicle> getVehiclesByUser(User user){
+        return getVehiclesByUser(user);
+    }
+
     @Transactional
     public Vehicle saveVehicle(Vehicle vehicle) {
         return vehicleRepository.save(vehicle);

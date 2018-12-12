@@ -26,10 +26,10 @@ import java.util.List;
 public class AutoServiceDemoApplication {
 
 	@Autowired
-	private UserService userService;
+	private static UserService userService;
 
 	@Autowired
-	private VehicleService vehicleService;
+	private static VehicleService vehicleService;
 
 	@Autowired
 	private RepairService repairService;
@@ -39,8 +39,15 @@ public class AutoServiceDemoApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(AutoServiceDemoApplication.class, args);
+
 	}
 
+
+    public static void run(String... args) {
+        User yiorgos = userService.getUserByFirstNameAndLastName("Giwrgos", "Alevizos");
+        List<Vehicle> ycars = vehicleService.getVehiclesByUser(yiorgos);
+        System.out.println(ycars);
+    }
 /*
 	@Override
 	public void run(String... args) throws Exception {

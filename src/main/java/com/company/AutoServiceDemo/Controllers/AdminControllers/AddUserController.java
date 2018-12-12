@@ -1,4 +1,4 @@
-package com.company.AutoServiceDemo.Controllers;
+package com.company.AutoServiceDemo.Controllers.AdminControllers;
 
 import com.company.AutoServiceDemo.Domain.User;
 import com.company.AutoServiceDemo.Services.UserService;
