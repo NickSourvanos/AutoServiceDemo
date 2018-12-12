@@ -188,10 +188,12 @@
                         '</button>' +
                         '</td>';
                     users_data += '<td style="padding-left: 1.5em;">' +
-                        '<button class="btn" onclick="viewvehicles(' + result + ')">'+
+                        '<form action="/vehicles" method="GET">' +
+                            '<input type="hidden" value="' + d.id + '"/> '+
+                        '<button class="btn" type="submit" >'+
                         '<i class="fa fa-edit" style="font-size:24px; text-align: center"></i>'+
-                        '</button>' +
-                        '</td>';*/
+                        '</button></form>' +
+                        '</td>';
                     users_data += '</tr>';
                 });
                 $('#usersList').html(users_data);
@@ -199,12 +201,22 @@
         });
     });
 
-    function viewvehicles(result){
+    function viewvehicles(userId){
+        alert(userId);
         $.ajax({
             type: 'POST',
-            url: 'http://localhost:8080/api/vehicle'
+            url: 'http://localhost:8080/api/vehicles?id='+userId,
+            success: function(){
+                location.href="http://localhost:8080/vehicles";
+            }
         });
+    }
 
+    function redirect(){
+        $.ajax({
+            type: 'GET',
+            url: 'http://localhost:8080/vehicles'
+        });
     }
 
     function updateuser(userId){
@@ -226,7 +238,6 @@
                 }
             }
         });
-
     }
 
 </script>

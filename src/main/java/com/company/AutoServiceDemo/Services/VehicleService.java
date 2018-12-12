@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface VehicleService {
 
-    List<Vehicle> getAllByUser(User user);
+    List<Vehicle> findAllByUser(User user);
 
     Vehicle findVehicleByPlateNUmber(String plateNumber);
 

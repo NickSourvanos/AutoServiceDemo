@@ -1,5 +1,7 @@
 package com.company.AutoServiceDemo.Domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -27,6 +29,7 @@ public class Vehicle {
     @Column(name = "color", length = MAX_LENGTH)
     private String color;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "vehicle", targetEntity = Repair.class)
     private List<Repair> repairs;
 

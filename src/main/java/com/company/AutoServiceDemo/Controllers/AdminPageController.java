@@ -28,13 +28,12 @@ public class AdminPageController {
     }
 
     @GetMapping("/")
-    public String index(Model model){
-        model.addAttribute("users", users);
+    public String index(){
         return "adminpage";
     }
 
     @PostMapping("/")
-    public String addUser(){
+    public String getAdminPage(){
         return "adminpage";
     }
 
