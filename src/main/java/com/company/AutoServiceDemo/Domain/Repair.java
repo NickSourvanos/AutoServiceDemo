@@ -9,7 +9,8 @@ import java.util.List;
 @Entity
 @Table(name = "REPAIR")
 public class Repair {
-
+    //TODO: Add status as string-enum
+    //TODO: change insert sql files
     private static final int MAX_LENGTH = 40;
 
     @Id

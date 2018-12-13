@@ -6,13 +6,14 @@ import com.company.AutoServiceDemo.Repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.swing.text.html.Option;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-@Component
+@Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -32,10 +33,11 @@ public class UserServiceImpl implements UserService {
         return userRepository.getAllByRoleType(roleType);
     }
 
-    @Transactional
+    @Override
     public User getUserByFirstNameAndLastName(String firstName, String lastName) {
         return userRepository.getUserByFirstNameAndLastName(firstName, lastName);
     }
+
 
     @Override
     public User findUserByAfm(String afm) {

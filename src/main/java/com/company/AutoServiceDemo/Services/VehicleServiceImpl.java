@@ -5,11 +5,12 @@ import com.company.AutoServiceDemo.Domain.Vehicle;
 import com.company.AutoServiceDemo.Repository.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
 
-@Component
+@Service
 public class VehicleServiceImpl implements VehicleService{
 
     @Autowired
@@ -23,6 +24,11 @@ public class VehicleServiceImpl implements VehicleService{
     @Override
     public Vehicle findVehicleByPlateNUmber(String plateNumber) {
         return vehicleRepository.findVehicleByPlateNUmber(plateNumber);
+    }
+
+    @Override
+    public List<Vehicle> getVehiclesByUser(User user){
+        return getVehiclesByUser(user);
     }
 
     @Transactional

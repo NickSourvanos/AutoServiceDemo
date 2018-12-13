@@ -13,6 +13,8 @@ public interface VehicleService {
 
     Vehicle saveVehicle(Vehicle vehicle);
 
+    List<Vehicle> getVehiclesByUser(User user);
+
 
 
 

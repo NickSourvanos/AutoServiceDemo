@@ -130,20 +130,12 @@
                         <div class="card ">
                             <div class="card-header ">
 
-                                <!--
                                 <div class="d-flex bd-highlight mb-3">
-                                  <div class="mr-auto p-2 bd-highlight">Flex item</div>
-                                  <div class="p-2 bd-highlight">Flex item</div>
-                                  <div class="p-2 bd-highlight">Flex item</div>
-                                </div>-->
-                                <div class="d-flex bd-highlight mb-3">
-
                                     <div class="mr-auto p-2 bd-highlight">
                                         <h4 style="padding-bottom: 0.6em;" class="card-title">Users</h4>
                                         <button id="students" class="btn btn-primary"
                                                 data-toggle="modal" data-target="#addUserFormModal">Add User</button>
                                     </div>
-
 
 
                                     <div class="p-2 bd-highlight">
@@ -159,8 +151,6 @@
 
                                     </div>
                                 </div>
-
-
 
                             </div>
                             <div id="booksTable" class="card-body table-full-width table-responsive">
@@ -208,7 +198,7 @@
     $(document).ready(function () {
         $.ajax({
             type: 'GET',
-            url: 'http://localhost:8080/api/users',
+            url: 'http://localhost:8080/admin/api/users',
             success: function(result){
                 var users_data = '';
                 result.forEach(function(d){
@@ -230,11 +220,13 @@
                         '</button></form>' +
                         '</td>';
                     users_data += '<td style="padding-left: 1.5em;">' +
-                        '<form action="/user/deleteUser" method="GET">' +
+                        '<form action="/admin/user/deleteUser" method="GET">' +
                         '<input type="hidden" name="id" value="' + d.id + '"/> '+
                         '<button class="btn" type="submit" >'+
                         '<i class="fa fa-edit" style="font-size:24px; text-align: center"></i>'+
                         '</button></form>' +
+                        '</td>';
+                        '</button>' +
                         '</td>';
                     users_data += '</tr>';
                 });
@@ -247,9 +239,9 @@
         alert(userId);
         $.ajax({
             type: 'POST',
-            url: 'http://localhost:8080/api/vehicles?id='+userId,
+            url: 'http://localhost:8080/admin/api/vehicles?id='+userId,
             success: function(){
-                location.href="http://localhost:8080/vehicles";
+                location.href="http://localhost:8080/admin/vehicles";
             }
         });
     }
@@ -257,7 +249,7 @@
     function redirect(){
         $.ajax({
             type: 'GET',
-            url: 'http://localhost:8080/vehicles'
+            url: 'http://localhost:8080/admin/vehicles'
         });
     }
 
@@ -265,7 +257,7 @@
 
         $.ajax({
             type: 'GET',
-            url: 'http://localhost:8080/api/user?id='+userId,
+            url: 'http://localhost:8080/admin/api/user?id='+userId,
             success: function(result){
                 document.getElementById('id').value = result.id;
                 document.getElementById('afm').value = result.afm;
@@ -296,7 +288,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="addUserForm" name="addUserForm" class="form-horizontal" action="/user/createUser" method="POST">
+            <form id="addUserForm" name="addUserForm" class="form-horizontal" action="/admin/user/createUser" method="POST">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
@@ -377,7 +369,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="editUserForm" action="/user/updateUser" method="POST">
+            <form id="editUserForm" action="/admin/user/updateUser" method="POST">
 
                 <div class="modal-body">
                     <div class="row">
@@ -449,8 +441,6 @@
         </div>
     </div>
 </div>
-
-
 
 
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
