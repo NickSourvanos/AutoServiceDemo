@@ -17,7 +17,6 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
 
-
     <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" type="text/javascript"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
@@ -53,17 +52,12 @@
 
         }
 
-
-
-
     </style>
 </header>
 <body>
 
 
 <div class="wrapper">
-
-
 
     <div class="sidebar" >
         <!--
@@ -123,6 +117,7 @@
             </div>
         </nav>
         <!-- End Navbar -->
+
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -146,6 +141,9 @@
                                     </thead>
                                     <tbody id="usersList">
 
+
+                               This is firtname:     ${user.firstName}
+
                                     </tbody>
 
                                 </table>
@@ -168,7 +166,6 @@
 </div>
 
 <script>
-
     $(document).ready(function () {
         $.ajax({
             type: 'GET',
@@ -211,7 +208,6 @@
                 }
             }
         });
-
     }
 
 </script>
@@ -371,7 +367,6 @@
         </div>
     </div>
 </div>
-
 
 
 

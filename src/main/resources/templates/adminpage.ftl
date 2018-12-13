@@ -173,7 +173,7 @@
     $(document).ready(function () {
         $.ajax({
             type: 'GET',
-            url: 'http://localhost:8080/api/users',
+            url: 'http://localhost:8080/admin/api/users',
             success: function(result){
                 var users_data = '';
                 result.forEach(function(d){
@@ -191,7 +191,7 @@
                         '<button class="btn" onclick="viewvehicles(' + result + ')">'+
                         '<i class="fa fa-edit" style="font-size:24px; text-align: center"></i>'+
                         '</button>' +
-                        '</td>';*/
+                        '</td>';
                     users_data += '</tr>';
                 });
                 $('#usersList').html(users_data);
@@ -211,7 +211,7 @@
 
         $.ajax({
             type: 'POST',
-            url: 'http://localhost:8080/api/user?id='+userId,
+            url: 'http://localhost:8080/admin/api/user?id='+userId,
             success: function(result){
                 document.getElementById('afm').value = result.afm;
                 document.getElementById('email').value = result.email;
@@ -226,9 +226,7 @@
                 }
             }
         });
-
     }
-
 </script>
 
 
@@ -241,7 +239,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="addUserForm" name="addUserForm" class="form-horizontal" action="/createUser" method="POST">
+            <form id="addUserForm" name="addUserForm" class="form-horizontal" action="/admin/createUser" method="POST">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">

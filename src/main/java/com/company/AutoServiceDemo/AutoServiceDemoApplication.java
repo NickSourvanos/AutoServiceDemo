@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.security.Provider;
 import java.text.SimpleDateFormat;
@@ -23,31 +24,16 @@ import java.util.Date;
 import java.util.List;
 
 @SpringBootApplication
-public class AutoServiceDemoApplication {
+public class AutoServiceDemoApplication  implements WebMvcConfigurer {
 
-	@Autowired
-	private static UserService userService;
-
-	@Autowired
-	private static VehicleService vehicleService;
-
-	@Autowired
-	private RepairService repairService;
-
-	@Autowired
-	private PartService partService;
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(AutoServiceDemoApplication.class, args);
 
 	}
 
 
-    public static void run(String... args) {
-        User yiorgos = userService.getUserByFirstNameAndLastName("Giwrgos", "Alevizos");
-        List<Vehicle> ycars = vehicleService.getVehiclesByUser(yiorgos);
-        System.out.println(ycars);
-    }
 /*
 	@Override
 	public void run(String... args) throws Exception {

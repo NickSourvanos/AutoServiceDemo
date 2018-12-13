@@ -18,17 +18,25 @@ import java.util.MissingResourceException;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "/api/user")
-public class UpdateUserController {
+@RequestMapping(value = "/admin/api")
+public class GetUserRestController {
 
     @Autowired
     private UserService userService;
 
-    @PostMapping
+    @GetMapping("/user")
+    public User hello(@RequestParam(value="id") Long user_id) {
+        try {
+            return userService.getUserById(user_id);
+        } catch (Exception ex) {
+            return null;
+        }
+    }
+
+    @PostMapping(value = "/user/updateUser")
     public User getUserById(@RequestParam("id") Long user_id){
         User user = userService.getUserById(user_id);
         return user;
     }
-
 
 }

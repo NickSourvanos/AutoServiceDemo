@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api")
-public class GetUsersController {
+@RequestMapping(value = "/admin/api")
+public class UsersRestController {
 
     @Autowired
     private UserService userService;

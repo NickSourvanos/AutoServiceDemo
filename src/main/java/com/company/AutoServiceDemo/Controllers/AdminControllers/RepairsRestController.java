@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping(value = "/api")
-public class RepairsController {
+@RequestMapping(value = "/admin/api")
+public class RepairsRestController {
 
     @Autowired
     private RepairService repairService;
