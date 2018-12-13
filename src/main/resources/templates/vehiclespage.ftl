@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
     <!-- CSS Files -->
 
-    <link rel="stylesheet" href="css/light-bootstrap-dashboard.css?v=2.0.1"/>
-    <link rel="text/javascript" href="js/core/jquery.3.2.1.min.js"/>
+    <link rel="stylesheet" href="/css/light-bootstrap-dashboard.css?v=2.0.1"/>
+    <link rel="text/javascript" href="/js/core/jquery.3.2.1.min.js"/>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
@@ -41,6 +41,11 @@
             display: table;
             width: 100%;
             table-layout: fixed;
+        }
+
+        .footer{
+            background-color: #E8E8E8;
+            max-height: 4.9em;
         }
 
         .modal-lg{
@@ -124,28 +129,69 @@
                     <div class="col-sm-12 col-md-12 col-lg-12">
                         <div class="card ">
                             <div class="card-header ">
-                                <h4 class="card-title">Users</h4></br>
 
-                                <button id="students" class="btn btn-primary"
-                                        data-toggle="modal" data-target="#addUserFormModal">Add User</button>
+                                <!--
+                                <div class="d-flex bd-highlight mb-3">
+                                  <div class="mr-auto p-2 bd-highlight">Flex item</div>
+                                  <div class="p-2 bd-highlight">Flex item</div>
+                                  <div class="p-2 bd-highlight">Flex item</div>
+                                </div>-->
+                                <div class="d-flex bd-highlight mb-3">
+
+                                    <div class="mr-auto p-2 bd-highlight">
+                                        <h4 style="padding-bottom: 0.6em;" class="card-title">Users</h4>
+                                        <button id="students" class="btn btn-primary"
+                                                data-toggle="modal" data-target="#addUserFormModal">Add User</button>
+                                    </div>
+
+
+                                    <div class="p-2 bd-highlight">
+                                        <input id="afmS" name="afmS" class="form-control form-control-sm mr-2 w-95" type="text" placeholder="AFM" aria-label="Search">
+                                    </div>
+
+                                    <div class="p-2 bd-highlight">
+                                        <button class="btn" onclick="searchByAfm()">
+                                            <i class="fa fa-search" aria-hidden="true"></i>
+                                        </button>
+
+                                    </div>
+
+                                    <div class="p-2 bd-highlight">
+                                        <form id="emailSearchForm" action="/userprofilepage" method="POST">
+                                            <input id="emailS" name="emailS" class="form-control form-control-sm mr-5 w-95" type="text" placeholder="Email" aria-label="Search">
+                                        </form>
+                                    </div>
+
+                                    <div class="p-2 bd-highlight">
+                                        <button class="btn" onclick="document.getElementById('#emailSearchForm').submit();">
+                                            <i class="fa fa-search" aria-hidden="true"></i>
+                                        </button>
+
+                                    </div>
+                                </div>
                             </div>
                             <div id="booksTable" class="card-body table-full-width table-responsive">
                                 <table class="table table-hover">
                                     <thead>
                                     <tr>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Email</th>
-                                        <th>Manage</th>
-                                        <th>Vehicles</th>
+                                        <th>Plate Number</th>
+                                        <th>Year of Man.</th>
+                                        <th>Color</th>
+                                        <th>Model</th>
                                     </tr>
                                     </thead>
-                                    <tbody id="usersList">
+                                    <tbody>
                                         <#list vehicles as vehicle>
                                             <tr>
-                                                <td>vehicle.getPlateNUmber()</td>
+                                                <td>${vehicle.getPlateNUmber()}</td>
+                                                <td>${vehicle.getYearOfManufacture()}</td>
+                                                <td>${vehicle.getColor()}</td>
+                                                <td>${vehicle.getModel()}</td>
+
                                             </tr>
+
                                         </#list>
+
                                     </tbody>
 
                                 </table>
@@ -157,7 +203,13 @@
                 </div>
             </div>
         </div>
-
+        <footer class="footer">
+            <div class="container">
+                <p class="copyright text-center" style="font-size: 13px;">
+                    <span><img style="width: 35px;" src=""></span>Auto Service Site</br>Welcome
+                </p>
+            </div>
+        </footer>
     </div>
 </div>
 
@@ -171,7 +223,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="addUserForm" name="addUserForm" class="form-horizontal" action="/createUser" method="POST">
+            <form id="addUserForm" name="addUserForm" class="form-horizontal" action="/user/createUser" method="POST">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
@@ -252,11 +304,13 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="editUserForm">
+            <form id="editUserForm" action="/user/updateUser" method="POST">
+
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
+                                <input id="id" name="id" type="hidden"/>
                                 <label for="afm">AFM</label>
                                 <input id="afm" type="text" name="afm" class="form-control" placeholder="Enter AFM" required="true">
                             </div>
@@ -299,6 +353,12 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
+                                <label for="address">Address</label>
+                                <input id="address" type="text" name="address" class="form-control" placeholder="Enter address" required="true">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
                                 <label for="roleType">Role</label>
                                 <select name="roleType" class="form-control">
                                     <option name="admin" value="ADMIN_ROLE">Admin</option>
@@ -310,7 +370,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" onclick="document.getElementById('addUserForm').submit();">Create User</button>
+                    <button type="submit" class="btn btn-primary">Update User</button>
                 </div>
             </form>
         </div>
@@ -325,17 +385,17 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" type="text/javascript"></script>
 
-<script src="js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
-<script src="js/core/popper.min.js" type="text/javascript"></script>
-<script src="js/core/bootstrap.min.js" type="text/javascript"></script>
+<script src="/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
+<script src="/js/core/popper.min.js" type="text/javascript"></script>
+<script src="/js/core/bootstrap.min.js" type="text/javascript"></script>
 <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-<script src="js/plugins/bootstrap-switch.js"></script>
+<script src="/js/plugins/bootstrap-switch.js"></script>
 <!--  Chartist Plugin  -->
-<script src="js/plugins/chartist.min.js"></script>
+<script src="/js/plugins/chartist.min.js"></script>
 <!--  Notifications Plugin    -->
-<script src="js/plugins/bootstrap-notify.js"></script>
+<script src="/js/plugins/bootstrap-notify.js"></script>
 <!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
-<script src="js/light-bootstrap-dashboard.js?v=2.0.1" type="text/javascript"></script>
+<script src="/js/light-bootstrap-dashboard.js?v=2.0.1" type="text/javascript"></script>
 
 
 </body>

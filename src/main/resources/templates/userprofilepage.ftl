@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
     <!-- CSS Files -->
 
-    <link rel="stylesheet" href="css/light-bootstrap-dashboard.css?v=2.0.1"/>
-    <link rel="text/javascript" href="js/core/jquery.3.2.1.min.js"/>
+    <link rel="stylesheet" href="/css/light-bootstrap-dashboard.css?v=2.0.1"/>
+    <link rel="text/javascript" href="/js/core/jquery.3.2.1.min.js"/>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
@@ -80,8 +80,8 @@
             <ul class="nav">
                 <li  class="active">
                     <a class="nav-link" href="">
-                       <i class="nc-icon nc-notes"></i>
-                       <p>Users</p>
+                        <i class="nc-icon nc-notes"></i>
+                        <p>Users</p>
                     </a>
                 </li>
                 <li>
@@ -139,33 +139,30 @@
                                 <div class="d-flex bd-highlight mb-3">
 
                                     <div class="mr-auto p-2 bd-highlight">
-                                        <h4 style="padding-bottom: 0.6em;" class="card-title">Users</h4>
-                                        <button id="students" class="btn btn-primary"
-                                                data-toggle="modal" data-target="#addUserFormModal">Add User</button>
+                                        <h4 style="padding-bottom: 0.6em;" class="card-title">User Profile</h4>
+
                                     </div>
 
 
                                     <div class="p-2 bd-highlight">
-                                        <form id="afmSearchForm" action="/vehicles/afmSearch" method="POST">
-                                            <input id="afmS" name="afmS" class="form-control form-control-sm mr-2 w-95" type="text" placeholder="AFM" aria-label="Search">
-                                        </form>
+                                        <input id="afmS" name="afmS" class="form-control form-control-sm mr-2 w-95" type="text" placeholder="AFM" aria-label="Search">
                                     </div>
 
                                     <div class="p-2 bd-highlight">
-                                        <button class="btn" onclick="document.getElementById('afmSearchForm').submit();">
+                                        <button class="btn" onclick="searchByAfm()">
                                             <i class="fa fa-search" aria-hidden="true"></i>
                                         </button>
 
                                     </div>
 
                                     <div class="p-2 bd-highlight">
-                                        <form id="emailSearchForm" action="/vehicles/emailSearch" method="POST">
-                                            <input id="emailS" type="email" name="emailS" class="form-control form-control-sm mr-5 w-95" type="text" placeholder="Email" aria-label="Search">
+                                        <form id="emailSearchForm" action="/vehicles/searchemail" method="POST">
+                                            <input id="emailS" name="emailS" class="form-control form-control-sm mr-5 w-95" type="text" placeholder="Email" aria-label="Search">
                                         </form>
                                     </div>
 
                                     <div class="p-2 bd-highlight">
-                                        <button type="submit" class="btn" onclick="document.getElementById('emailSearchForm').submit();">
+                                        <button class="btn" onclick="searchByEmail()">
                                             <i class="fa fa-search" aria-hidden="true"></i>
                                         </button>
 
@@ -179,13 +176,35 @@
                                         <th>First Name</th>
                                         <th>Last Name</th>
                                         <th>Email</th>
-                                        <th>Manage</th>
+                                        <th>Edit</th>
                                         <th>Vehicles</th>
                                         <th>Delete</th>
                                     </tr>
                                     </thead>
                                     <tbody id="usersList">
-
+                                        <tr>
+                                            <td>${user.getFirstName()}</td>
+                                            <td>${user.getLastName()}</td>
+                                            <td>${user.getEmail()}</td>
+                                            <td><button class="btn" data-toggle="modal" data-target="#editUser"
+                                                onclick="updateuser(${user.getId()})" >
+                                                <i class="fa fa-edit" style="font-size:24px; text-align: center"></i>
+                                                </button></td>
+                                            <td style="padding-left: 1.5em;">
+                                                <form action="/vehicles/user" method="GET">
+                                                    <input type="hidden" name="id" value="${user.getId()}"/>
+                                                    <button class="btn" type="submit" >
+                                                        <i class="fa fa-edit" style="font-size:24px; text-align: center"></i>
+                                                        </button></form>
+                                                </td>
+                                            <td style="padding-left: 1.5em;">
+                                                <form action="/user/deleteUser" method="GET">
+                                                    <input type="hidden" name="id" value="${user.getId()}"/>
+                                                    <button class="btn" type="submit" >
+                                                        <i class="fa fa-remove" style="font-size:24px; text-align: center"></i>
+                                                    </button></form>
+                                            </td>;
+                                        </tr>
                                     </tbody>
 
                                 </table>
@@ -208,65 +227,6 @@
 </div>
 
 <script>
-
-
-
-    $(document).ready(function () {
-        $.ajax({
-            type: 'GET',
-            url: 'http://localhost:8080/api/users',
-            success: function(result){
-                var users_data = '';
-                result.forEach(function(d){
-                    users_data += "<tr>";
-                    users_data += '<td>' + d.firstName + '</td>';
-                    users_data += '<td>' + d.lastName + '</td>';
-                    users_data += '<td>' + d.email + '</td>';
-                    users_data += '<td style="padding-left: 1.5em;">' +
-                        '<button class="btn" data-toggle="modal" data-target="#editUser" ' +
-                        'onclick="updateuser(' + d.id + ')" >'+
-                        '<i class="fa fa-edit" style="font-size:24px; text-align: center"></i>'+
-                        '</button>' +
-                        '</td>';
-                    users_data += '<td style="padding-left: 1.5em;">' +
-                        '<form action="/vehicles/user" method="GET">' +
-                            '<input type="hidden" name="id" value="' + d.id + '"/> '+
-                        '<button class="btn" type="submit" >'+
-                        '<i class="fa fa-edit" style="font-size:24px; text-align: center"></i>'+
-                        '</button></form>' +
-                        '</td>';
-                    users_data += '<td style="padding-left: 1.5em;">' +
-                        '<form action="/user/deleteUser" method="GET">' +
-                        '<input type="hidden" name="id" value="' + d.id + '"/> '+
-                        '<button class="btn" type="submit" >'+
-                        '<i class="fa fa-remove" style="font-size:24px; text-align: center"></i>'+
-                        '</button></form>' +
-                        '</td>';
-                    users_data += '</tr>';
-                });
-                $('#usersList').html(users_data);
-            }
-        });
-    });
-
-    function viewvehicles(userId){
-        alert(userId);
-        $.ajax({
-            type: 'POST',
-            url: 'http://localhost:8080/api/vehicles?id='+userId,
-            success: function(){
-                location.href="http://localhost:8080/vehicles";
-            }
-        });
-    }
-
-    function redirect(){
-        $.ajax({
-            type: 'GET',
-            url: 'http://localhost:8080/vehicles'
-        });
-    }
-
     function updateuser(userId){
 
         $.ajax({
@@ -289,7 +249,6 @@
             }
         });
     }
-
 </script>
 
 
@@ -464,17 +423,17 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" type="text/javascript"></script>
 
-<script src="js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
-<script src="js/core/popper.min.js" type="text/javascript"></script>
-<script src="js/core/bootstrap.min.js" type="text/javascript"></script>
+<script src="/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
+<script src="/js/core/popper.min.js" type="text/javascript"></script>
+<script src="/js/core/bootstrap.min.js" type="text/javascript"></script>
 <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-<script src="js/plugins/bootstrap-switch.js"></script>
+<script src="/js/plugins/bootstrap-switch.js"></script>
 <!--  Chartist Plugin  -->
-<script src="js/plugins/chartist.min.js"></script>
+<script src="/js/plugins/chartist.min.js"></script>
 <!--  Notifications Plugin    -->
-<script src="js/plugins/bootstrap-notify.js"></script>
+<script src="/js/plugins/bootstrap-notify.js"></script>
 <!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
-<script src="js/light-bootstrap-dashboard.js?v=2.0.1" type="text/javascript"></script>
+<script src="/js/light-bootstrap-dashboard.js?v=2.0.1" type="text/javascript"></script>
 
 
 </body>

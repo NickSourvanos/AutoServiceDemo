@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/vehicles")
+//@RequestMapping(value = "/vehicles")
 public class VehiclesController {
 
     @Autowired
@@ -21,13 +21,7 @@ public class VehiclesController {
     @Autowired
     private UserService userService;
 
-    @GetMapping
-    public String getUserVehicles(Long userId, Model model){
-        User user = userService.getUserById(userId);
-        List<Vehicle> vehicles = vehicleService.findAllByUser(user);
-        model.addAttribute("vehicles", vehicles);
-        return "vehicles";
-    }
+
 
 
 
