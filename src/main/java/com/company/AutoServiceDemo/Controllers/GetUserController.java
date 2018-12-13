@@ -13,22 +13,25 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.PostConstruct;
 import java.lang.module.ResolutionException;
 import java.util.MissingResourceException;
 import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/api/user")
-public class UpdateUserController {
+public class GetUserController {
 
     @Autowired
     private UserService userService;
 
-    @PostMapping
+    @GetMapping
     public User getUserById(@RequestParam("id") Long user_id){
         User user = userService.getUserById(user_id);
         return user;
     }
+
+
 
 
 }

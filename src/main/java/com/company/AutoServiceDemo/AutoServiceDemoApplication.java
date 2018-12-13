@@ -24,7 +24,7 @@ import java.util.List;
 
 @SpringBootApplication
 public class AutoServiceDemoApplication {
-
+/*
 	@Autowired
 	private UserService userService;
 
@@ -35,10 +35,11 @@ public class AutoServiceDemoApplication {
 	private RepairService repairService;
 
 	@Autowired
-	private PartService partService;
+	private PartService partService;*/
 
 	public static void main(String[] args) {
 		SpringApplication.run(AutoServiceDemoApplication.class, args);
+
 	}
 
 /*

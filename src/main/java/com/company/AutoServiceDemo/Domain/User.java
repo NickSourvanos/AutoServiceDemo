@@ -124,18 +124,5 @@ public class User {
         this.vehicles = vehicles;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", afm='" + afm + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", address='" + address + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", roleType=" + roleType +
-                ", vehicles=" + vehicles +
-                '}';
-    }
+
 }

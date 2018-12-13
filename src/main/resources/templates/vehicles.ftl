@@ -43,11 +43,6 @@
             table-layout: fixed;
         }
 
-        .footer{
-            background-color: #E8E8E8;
-            max-height: 4.9em;
-        }
-
         .modal-lg{
             max-width: 80%;
 
@@ -80,8 +75,8 @@
             <ul class="nav">
                 <li  class="active">
                     <a class="nav-link" href="">
-                       <i class="nc-icon nc-notes"></i>
-                       <p>Users</p>
+                        <i class="nc-icon nc-notes"></i>
+                        <p>Users</p>
                     </a>
                 </li>
                 <li>
@@ -129,39 +124,10 @@
                     <div class="col-sm-12 col-md-12 col-lg-12">
                         <div class="card ">
                             <div class="card-header ">
+                                <h4 class="card-title">Users</h4></br>
 
-                                <!--
-                                <div class="d-flex bd-highlight mb-3">
-                                  <div class="mr-auto p-2 bd-highlight">Flex item</div>
-                                  <div class="p-2 bd-highlight">Flex item</div>
-                                  <div class="p-2 bd-highlight">Flex item</div>
-                                </div>-->
-                                <div class="d-flex bd-highlight mb-3">
-
-                                    <div class="mr-auto p-2 bd-highlight">
-                                        <h4 style="padding-bottom: 0.6em;" class="card-title">Users</h4>
-                                        <button id="students" class="btn btn-primary"
-                                                data-toggle="modal" data-target="#addUserFormModal">Add User</button>
-                                    </div>
-
-
-
-                                    <div class="p-2 bd-highlight">
-
-                                        <input id="afmS" name="afmS" class="form-control form-control-sm mr-2 w-95" type="text" placeholder="AFM" aria-label="Search">
-                                        <input id="emailS" name="emailS" class="form-control form-control-sm mr-5 w-95" type="text" placeholder="Email" aria-label="Search">
-                                    </div>
-
-                                    <div class="p-2 bd-highlight">
-                                        <button onclick="searchByAfm()">
-                                            <i class="fa fa-search" aria-hidden="true"></i>
-                                        </button>
-
-                                    </div>
-                                </div>
-
-
-
+                                <button id="students" class="btn btn-primary"
+                                        data-toggle="modal" data-target="#addUserFormModal">Add User</button>
                             </div>
                             <div id="booksTable" class="card-body table-full-width table-responsive">
                                 <table class="table table-hover">
@@ -172,11 +138,14 @@
                                         <th>Email</th>
                                         <th>Manage</th>
                                         <th>Vehicles</th>
-                                        <th>Delete</th>
                                     </tr>
                                     </thead>
                                     <tbody id="usersList">
-
+                                        <#list vehicles as vehicle>
+                                            <tr>
+                                                <td>vehicle.getPlateNUmber()</td>
+                                            </tr>
+                                        </#list>
                                     </tbody>
 
                                 </table>
@@ -188,103 +157,9 @@
                 </div>
             </div>
         </div>
-        <footer class="footer">
-            <div class="container">
-                <p class="copyright text-center" style="font-size: 13px;">
-                    <span><img style="width: 35px;" src=""></span>Auto Service Site</br>Welcome
-                </p>
-            </div>
-        </footer>
+
     </div>
 </div>
-
-<script>
-
-    function searchByAfm(){
-        var afm = $('#afmS');
-        alert(afm);
-    }
-
-    $(document).ready(function () {
-        $.ajax({
-            type: 'GET',
-            url: 'http://localhost:8080/api/users',
-            success: function(result){
-                var users_data = '';
-                result.forEach(function(d){
-                    users_data += "<tr>";
-                    users_data += '<td>' + d.firstName + '</td>';
-                    users_data += '<td>' + d.lastName + '</td>';
-                    users_data += '<td>' + d.email + '</td>';
-                    users_data += '<td style="padding-left: 1.5em;">' +
-                        '<button class="btn" data-toggle="modal" data-target="#editUser" ' +
-                        'onclick="updateuser(' + d.id + ')" >'+
-                        '<i class="fa fa-edit" style="font-size:24px; text-align: center"></i>'+
-                        '</button>' +
-                        '</td>';
-                    users_data += '<td style="padding-left: 1.5em;">' +
-                        '<form action="/vehicles" method="GET">' +
-                            '<input type="hidden" value="' + d.id + '"/> '+
-                        '<button class="btn" type="submit" >'+
-                        '<i class="fa fa-edit" style="font-size:24px; text-align: center"></i>'+
-                        '</button></form>' +
-                        '</td>';
-                    users_data += '<td style="padding-left: 1.5em;">' +
-                        '<form action="/user/deleteUser" method="GET">' +
-                        '<input type="hidden" name="id" value="' + d.id + '"/> '+
-                        '<button class="btn" type="submit" >'+
-                        '<i class="fa fa-edit" style="font-size:24px; text-align: center"></i>'+
-                        '</button></form>' +
-                        '</td>';
-                    users_data += '</tr>';
-                });
-                $('#usersList').html(users_data);
-            }
-        });
-    });
-
-    function viewvehicles(userId){
-        alert(userId);
-        $.ajax({
-            type: 'POST',
-            url: 'http://localhost:8080/api/vehicles?id='+userId,
-            success: function(){
-                location.href="http://localhost:8080/vehicles";
-            }
-        });
-    }
-
-    function redirect(){
-        $.ajax({
-            type: 'GET',
-            url: 'http://localhost:8080/vehicles'
-        });
-    }
-
-    function updateuser(userId){
-
-        $.ajax({
-            type: 'GET',
-            url: 'http://localhost:8080/api/user?id='+userId,
-            success: function(result){
-                document.getElementById('id').value = result.id;
-                document.getElementById('afm').value = result.afm;
-                document.getElementById('email').value = result.email;
-                document.getElementById('firstName').value = result.firstName;
-                document.getElementById('lastName').value = result.lastName;
-                document.getElementById('address').value = result.address;
-                document.getElementById('password').value = result.password;
-                document.getElementById('password2').value = result.password2;
-                if(result.role === "SIMPLE_ROLE_TYPE"){
-                    document.getElementsByName('role').value = "SIMPLE_USER_ROLE";
-                }if(result.role === "ADMIN_ROLE"){
-                    document.getElementsByName('role').value = "ADMIN_ROLE";
-                }
-            }
-        });
-    }
-
-</script>
 
 
 <div class="modal fade" id="addUserFormModal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -296,7 +171,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="addUserForm" name="addUserForm" class="form-horizontal" action="/user/createUser" method="POST">
+            <form id="addUserForm" name="addUserForm" class="form-horizontal" action="/createUser" method="POST">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
@@ -377,13 +252,11 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="editUserForm" action="/user/updateUser" method="POST">
-
+            <form id="editUserForm">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input id="id" name="id" type="hidden"/>
                                 <label for="afm">AFM</label>
                                 <input id="afm" type="text" name="afm" class="form-control" placeholder="Enter AFM" required="true">
                             </div>
@@ -426,12 +299,6 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="address">Address</label>
-                                <input id="address" type="text" name="address" class="form-control" placeholder="Enter address" required="true">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
                                 <label for="roleType">Role</label>
                                 <select name="roleType" class="form-control">
                                     <option name="admin" value="ADMIN_ROLE">Admin</option>
@@ -443,7 +310,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Update User</button>
+                    <button type="submit" class="btn btn-primary" onclick="document.getElementById('addUserForm').submit();">Create User</button>
                 </div>
             </form>
         </div>
