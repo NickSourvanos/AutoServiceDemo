@@ -124,5 +124,4 @@ public class User {
         this.vehicles = vehicles;
     }
 
-
 }

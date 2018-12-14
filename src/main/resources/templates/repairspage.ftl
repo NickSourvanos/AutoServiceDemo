@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
     <!-- CSS Files -->
 
-    <link rel="stylesheet" href="css/light-bootstrap-dashboard.css?v=2.0.1"/>
-    <link rel="text/javascript" href="js/core/jquery.3.2.1.min.js"/>
+    <link rel="stylesheet" href="/css/light-bootstrap-dashboard.css?v=2.0.1"/>
+    <link rel="text/javascript" href="/js/core/jquery.3.2.1.min.js"/>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
@@ -116,16 +116,25 @@
                                 <table class="table table-hover">
                                     <thead>
                                     <tr>
-                                        <th>Cost</th>
-                                        <th>Description</th>
                                         <th>Date</th>
+                                        <th>Description</th>
                                         <th>Type</th>
+                                        <th>Cost</th>
                                         <th>Status</th>
                                     </tr>
                                     </thead>
                                     <tbody id="usersList">
 
                                     <!-- #lt iteration here -->
+                                    <#list repairs as repair>
+                                        <tr>
+                                            <td>${repair.getRepairDate()}</td>
+                                            <td>${repair.getDescription()}</td>
+                                            <td>${repair.getRepairType()}</td>
+                                            <td>${repair.getCost()}</td>
+                                            <td>${repair.getStatus()?then('Pending', 'Completed')} </td>
+                                        </tr>
+                                    </#list>
 
                                     </tbody>
 
@@ -154,17 +163,17 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" type="text/javascript"></script>
 
-<script src="js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
-<script src="js/core/popper.min.js" type="text/javascript"></script>
-<script src="js/core/bootstrap.min.js" type="text/javascript"></script>
+<script src="/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
+<script src="/js/core/popper.min.js" type="text/javascript"></script>
+<script src="/js/core/bootstrap.min.js" type="text/javascript"></script>
 <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-<script src="js/plugins/bootstrap-switch.js"></script>
+<script src="/js/plugins/bootstrap-switch.js"></script>
 <!--  Chartist Plugin  -->
-<script src="js/plugins/chartist.min.js"></script>
+<script src="/js/plugins/chartist.min.js"></script>
 <!--  Notifications Plugin    -->
-<script src="js/plugins/bootstrap-notify.js"></script>
+<script src="/js/plugins/bootstrap-notify.js"></script>
 <!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
-<script src="js/light-bootstrap-dashboard.js?v=2.0.1" type="text/javascript"></script>
+<script src="/js/light-bootstrap-dashboard.js?v=2.0.1" type="text/javascript"></script>
 
 
 </body>

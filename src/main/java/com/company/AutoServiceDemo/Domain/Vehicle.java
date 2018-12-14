@@ -104,16 +104,4 @@ public class Vehicle {
         this.user = user;
     }
 
-    @Override
-    public String toString() {
-        return "Vehicle{" +
-                "vehicleId=" + vehicleId +
-                ", plateNUmber='" + plateNUmber + '\'' +
-                ", model='" + model + '\'' +
-                ", yearOfManufacture='" + yearOfManufacture + '\'' +
-                ", color='" + color + '\'' +
-                ", repairs=" + repairs +
-                ", users=" + user +
-                '}';
-    }
 }

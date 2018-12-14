@@ -28,7 +28,7 @@ public class VehicleServiceImpl implements VehicleService{
 
     @Override
     public List<Vehicle> getVehiclesByUser(User user){
-        return getVehiclesByUser(user);
+        return vehicleRepository.getVehiclesByUser(user);
     }
 
     @Transactional

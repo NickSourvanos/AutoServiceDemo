@@ -110,17 +110,4 @@ public class Repair {
         this.part = part;
     }
 
-    @Override
-    public String toString() {
-        return "Repair{" +
-                "repairId=" + repairId +
-                ", repairDate=" + repairDate +
-                ", status=" + status +
-                ", repairType=" + repairType +
-                ", cost=" + cost +
-                ", description='" + description + '\'' +
-                ", vehicle=" + vehicle +
-                ", part=" + part +
-                '}';
-    }
 }

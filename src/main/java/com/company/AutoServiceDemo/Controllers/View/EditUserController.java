@@ -45,6 +45,5 @@ public class EditUserController {
     public String deleteUser(User user){
         userService.deleteUser(user);
         return "redirect:/admin";
-
     }
 }
