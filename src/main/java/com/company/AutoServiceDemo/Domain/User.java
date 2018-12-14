@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
-
+//TODO: status, cost(per item - total), owner, repair description,  repairType, Date
 @Entity
 @Table(name = "USER", uniqueConstraints = {@UniqueConstraint(columnNames = {"afm", "email"})})
 public class User {
@@ -123,6 +123,5 @@ public class User {
     public void setVehicles(List<Vehicle> vehicles) {
         this.vehicles = vehicles;
     }
-
 
 }

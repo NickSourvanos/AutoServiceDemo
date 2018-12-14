@@ -9,7 +9,8 @@ import java.util.List;
 @Entity
 @Table(name = "REPAIR")
 public class Repair {
-
+    //TODO: Add status as string-enum
+    //TODO: change insert sql files
     private static final int MAX_LENGTH = 40;
 
     @Id
@@ -109,17 +110,4 @@ public class Repair {
         this.part = part;
     }
 
-    @Override
-    public String toString() {
-        return "Repair{" +
-                "repairId=" + repairId +
-                ", repairDate=" + repairDate +
-                ", status=" + status +
-                ", repairType=" + repairType +
-                ", cost=" + cost +
-                ", description='" + description + '\'' +
-                ", vehicle=" + vehicle +
-                ", part=" + part +
-                '}';
-    }
 }
