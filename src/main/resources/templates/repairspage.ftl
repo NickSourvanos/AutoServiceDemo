@@ -132,7 +132,7 @@
                                         <td>${repair.getDescription()}</td>
                                         <td>${repair.getRepairType()}</td>
                                         <td>${repair.getCost()}</td>
-                                        <td>${repair.getStatus()?then('Pending', 'Completed')} </td>
+                                        <td>${repair.getStatus()} </td>
                                         </tr>
                                     </#list>
 
