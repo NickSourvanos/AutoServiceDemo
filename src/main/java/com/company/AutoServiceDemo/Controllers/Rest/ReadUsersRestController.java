@@ -26,4 +26,10 @@ public class ReadUsersRestController {
         return user;
     }
 
+
+    @GetMapping(value = "/user/deleteUser")
+    public void deleteUser(@RequestParam("id") Long id) {
+        User user = userService.getUserById(id);
+        userService.deleteUser(user);
+    }
 }

@@ -203,12 +203,11 @@
 
 <script>
 
-    function searchByAfm(){
-        var afm = $('#afmS');
-        alert(afm);
-    }
-
     $(document).ready(function () {
+        populateTable();
+    });
+
+    function populateTable(){
         $.ajax({
             type: 'GET',
             url: 'http://localhost:8080/admin/api/users',
@@ -226,27 +225,37 @@
                         '</button>' +
                         '</td>';
                     users_data += '<td style="padding-left: 1.5em;">' +
-                        '<form action="/admin/vehicles/user" method="GET">' +
-                            '<input type="hidden" name="id" value="' + d.id + '"/> '+
-                        '<button class="btn" type="submit" >'+
+                        '<button class="btn" onclick="viewvehicles(' + result + ')">'+
                         '<i class="fa fa-edit" style="font-size:24px; text-align: center"></i>'+
-                        '</button></form>' +
+                        '</button>' +
                         '</td>';
-                    users_data += '<td style="padding-left: 1.5em;">' +
-                        '<form action="/admin/user/deleteUser" method="GET">' +
-                        '<input type="hidden" name="id" value="' + d.id + '"/> '+
-                        '<button class="btn" type="submit" >'+
-                        '<i class="fa fa-remove" style="font-size:24px; text-align: center"></i>'+
-                        '</button></form>' +
+                    users_data += '<td style="padding-left: 1.5em;">' +                     ///DELETE
+                        '<button class="btn" onclick="deleteuser(' + d.id + ')">'+
+                        '<i class="fa fa-edit" style="font-size:24px; text-align: center"></i>'+
+                        '</button>' +
                         '</td>';
                     users_data += '</tr>';
                 });
                 $('#usersList').html(users_data);
             }
         });
-    });
+    }
 
+    function deleteuser(userId){
+        var result = confirm("Are you sure?");
 
+        if(result){
+            $.ajax({
+                type: 'GET',
+                url: 'http://localhost:8080/admin/api/user/deleteUser?id='+userId,
+                success: function(){
+                    populateTable();
+                }
+
+            });
+        }
+
+    }
 
     function redirect(){
         $.ajax({
