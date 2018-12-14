@@ -23,7 +23,7 @@ public class RepairController {
     private UserService userService;
 
     @GetMapping(value = "/repairs/user")
-    public String getRepairsByUser(Model model, @RequestParam(value = "id") Long useId){
+    public String getRepairsByUser(Model model, @RequestParam("id") Long useId){
 
         User user = userService.getUserById(useId);
         List<Repair> repairs = repairService.getRepairsByUser(user);
