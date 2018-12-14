@@ -1,6 +1,8 @@
 package com.company.AutoServiceDemo.Domain;
 
 import com.company.AutoServiceDemo.Enums.RepairType;
+import com.company.AutoServiceDemo.Enums.StatusType;
+import jdk.jshell.Snippet;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -21,8 +23,9 @@ public class Repair {
     @Column(name = "repair_date", length = MAX_LENGTH)
     private String repairDate;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "status", length = MAX_LENGTH)
-    private Boolean status;
+    private StatusType status;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "repair_type")
@@ -62,11 +65,11 @@ public class Repair {
         this.repairDate = repairDate;
     }
 
-    public Boolean getStatus() {
+    public StatusType getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(StatusType status) {
         this.status = status;
     }
 
