@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PartServiceImpl implements PartService {
 
@@ -17,4 +19,8 @@ public class PartServiceImpl implements PartService {
     public Part findByType(String partType) {
         return partRepository.findByType(partType);
     }
+
+    @Override
+    public List<Part> getAllParts(){return partRepository.findAll();}
+
 }

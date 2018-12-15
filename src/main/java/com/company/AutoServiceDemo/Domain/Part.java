@@ -1,5 +1,7 @@
 package com.company.AutoServiceDemo.Domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -19,7 +21,7 @@ public class Part {
 
     @Column(name = "cost", length = MAX_LENGTH)
     private Double cost;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "part", targetEntity = Repair.class)
     private List<Repair> repairs;
 

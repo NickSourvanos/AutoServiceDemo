@@ -57,9 +57,9 @@ public class EditUserController {
         return "redirect:/admin";
     }
 
-    @GetMapping(value = "/deleteUser")
+   /* @GetMapping(value = "/deleteUser")
     public String deleteUser(User user){
         userService.deleteUser(user);
         return "redirect:/admin";
-    }
+    }*/
 }

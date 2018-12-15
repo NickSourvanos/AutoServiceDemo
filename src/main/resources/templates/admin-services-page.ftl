@@ -3,7 +3,7 @@
 <header>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>IREAD</title>
+    <title>Services</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=greek" rel="stylesheet">
@@ -78,13 +78,13 @@
                 </a>
             </div>
             <ul class="nav">
-                <li  class="active">
-                    <a class="nav-link" href="">
+                <li>
+                    <a class="nav-link" href="/admin">
                        <i class="nc-icon nc-notes"></i>
                        <p>Users</p>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a class="nav-link" href="/admin/services">
                         <i class="nc-icon nc-circle-09"></i>
                         <p>Services</p>
@@ -129,23 +129,23 @@
                     <div class="col-sm-12 col-md-12 col-lg-12">
                         <div class="card ">
                             <div class="card-header ">
-
                                 <div class="d-flex bd-highlight mb-3">
                                     <div class="mr-auto p-2 bd-highlight">
-                                        <h4 style="padding-bottom: 0.6em;" class="card-title">Users</h4>
+                                        <h4 style="padding-bottom: 0.6em;" class="card-title">Repairs</h4>
+                                        <!-- TODO: Add data target -->
                                         <button id="students" class="btn btn-primary"
-                                                data-toggle="modal" data-target="#addUserFormModal">Add User</button>
+                                                data-toggle="modal" data-target="">Add Repair</button>
                                     </div>
 
-
                                     <div class="p-2 bd-highlight">
-                                        <form id="afmSearchForm" action="/admin/user/afmSearch" method="POST">
+                                        <!-- TODO: Add action -->
+                                        <form id="afmSearchForm" action="" method="POST">
                                             <input id="afmS" name="afmS" class="form-control form-control-sm mr-2 w-95" type="text" placeholder="AFM" aria-label="Search">
                                         </form>
                                     </div>
-
+                                        <!-- TODO: Add onclick -->
                                     <div class="p-2 bd-highlight">
-                                        <button class="btn" onclick="document.getElementById('afmSearchForm').submit();">
+                                        <button class="btn" onclick="document.getElementById('').submit();">
                                             <i class="fa fa-search" aria-hidden="true"></i>
                                         </button>
 
@@ -201,6 +201,93 @@
     </div>
 </div>
 
+<script>
+
+    $(document).ready(function () {
+        populateTable();
+    });
+
+    function populateTable(){
+        $.ajax({
+            type: 'GET',
+            url: 'http://localhost:8080/admin/api/users',
+            success: function(result){
+                var users_data = '';
+                result.forEach(function(d){
+                    users_data += "<tr>";
+                    users_data += '<td>' + d.firstName + '</td>';
+                    users_data += '<td>' + d.lastName + '</td>';
+                    users_data += '<td>' + d.email + '</td>';
+                    users_data += '<td style="padding-left: 1.5em;">' +
+                        '<button class="btn" data-toggle="modal" data-target="#editUser" ' +
+                        'onclick="updateuser(' + d.id + ')" >'+
+                        '<i class="fa fa-edit" style="font-size:24px; text-align: center"></i>'+
+                        '</button>' +
+                        '</td>';
+                    users_data += '<td style="padding-left: 1.5em;">' +
+                        '<button class="btn" onclick="viewvehicles(' + result + ')">'+
+                        '<i class="fa fa-edit" style="font-size:24px; text-align: center"></i>'+
+                        '</button>' +
+                        '</td>';
+                    users_data += '<td style="padding-left: 1.5em;">' +                     ///DELETE
+                        '<button class="btn" onclick="deleteuser(' + d.id + ')">'+
+                        '<i class="fa fa-edit" style="font-size:24px; text-align: center"></i>'+
+                        '</button>' +
+                        '</td>';
+                    users_data += '</tr>';
+                });
+                $('#usersList').html(users_data);
+            }
+        });
+    }
+
+    function deleteuser(userId){
+        var result = confirm("Are you sure?");
+
+        if(result){
+            $.ajax({
+                type: 'GET',
+                url: 'http://localhost:8080/admin/api/user/deleteUser?id='+userId,
+                success: function(){
+                    populateTable();
+                }
+
+            });
+        }
+
+    }
+
+    function redirect(){
+        $.ajax({
+            type: 'GET',
+            url: 'http://localhost:8080/admin/vehicles'
+        });
+    }
+
+    function updateuser(userId){
+
+        $.ajax({
+            type: 'GET',
+            url: 'http://localhost:8080/admin/api/user?id='+userId,
+            success: function(result){
+                document.getElementById('id').value = result.id;
+                document.getElementById('afm').value = result.afm;
+                document.getElementById('email').value = result.email;
+                document.getElementById('firstName').value = result.firstName;
+                document.getElementById('lastName').value = result.lastName;
+                document.getElementById('address').value = result.address;
+                document.getElementById('password').value = result.password;
+                document.getElementById('password2').value = result.password2;
+                if(result.role === "SIMPLE_ROLE_TYPE"){
+                    document.getElementsByName('role').value = "SIMPLE_USER_ROLE";
+                }if(result.role === "ADMIN_ROLE"){
+                    document.getElementsByName('role').value = "ADMIN_ROLE";
+                }
+            }
+        });
+    }
+
+</script>
 
 
 <div class="modal fade" id="addUserFormModal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -359,21 +446,14 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" >Update User</button>
+                    <button type="submit" class="btn btn-primary">Update User</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
 
-<script>
-    $('document').ready(function () {
-        populateTable();
-    });
 
-</script>
-
-<script src="/jsAjax/userajaxcalls.js" type="text/javascript"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>

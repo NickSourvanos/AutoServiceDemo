@@ -13,4 +13,9 @@ public class AdminPageController {
         return "adminpage";
     }
 
+    @GetMapping(value = "/services")
+    public String adminRepairs(){
+        return "admin-services-page";
+    }
+
 }

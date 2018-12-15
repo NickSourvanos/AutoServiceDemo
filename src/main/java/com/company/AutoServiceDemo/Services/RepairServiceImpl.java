@@ -7,9 +7,7 @@ import com.company.AutoServiceDemo.Repository.RepairRepository;
 import com.company.AutoServiceDemo.Repository.UserRepository;
 import com.company.AutoServiceDemo.Repository.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
