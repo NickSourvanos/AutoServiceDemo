@@ -15,5 +15,8 @@ public interface RepairService {
 
     List<Repair> getRepairsByUser(User user);
 
+    List<Repair> findByRepairDateBetween(String startDate, String endDate);
+
+    List<Repair> findFirst10ByOrderByRepairDateAsc();
 
 }

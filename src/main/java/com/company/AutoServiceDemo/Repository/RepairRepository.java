@@ -14,5 +14,9 @@ public interface RepairRepository extends JpaRepository<Repair, Long> {
 
     List<Repair> getRepairsByVehicle(Vehicle vehicle);
 
+    List<Repair> findByRepairDateBetween(String startDate, String endDate);
+
+    List<Repair> findFirst10ByOrderByRepairDateAsc();
+
    // List<Repair> getRepairsByUser(User user);
 }

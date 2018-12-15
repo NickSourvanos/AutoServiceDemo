@@ -45,6 +45,16 @@ public class RepairServiceImpl implements RepairService {
         return repairs;
     }
 
+    @Override
+    public List<Repair> findByRepairDateBetween(String startDate, String endDate) {
+        return repairRepository.findByRepairDateBetween(startDate, endDate);
+    }
+
+    @Override
+    public List<Repair> findFirst10ByOrderByRepairDateAsc() {
+        return repairRepository.findFirst10ByOrderByRepairDateAsc();
+    }
+
     @Transactional
     public Repair saveRepair(Repair repair) {
         return repairRepository.save(repair);

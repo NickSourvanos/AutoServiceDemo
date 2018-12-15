@@ -15,7 +15,8 @@ public interface VehicleService {
 
     List<Vehicle> getVehiclesByUser(User user);
 
+    List<Vehicle> findAllVehicles();
 
-
+    Vehicle getVehicleByVehicleId(Long vehicleId);
 
 }

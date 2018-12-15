@@ -33,7 +33,7 @@ public class Vehicle {
     @OneToMany(mappedBy = "vehicle", targetEntity = Repair.class)
     private List<Repair> repairs;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 

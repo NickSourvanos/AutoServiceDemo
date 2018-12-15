@@ -36,6 +36,7 @@ public class EditUserController {
     @PostMapping("/afmSearch")
     public String getUserProfileByAfm(@RequestParam("afmS") String afm, Model model){
         User user = userService.findUserByAfm(afm);
+
         model.addAttribute("user", user);
         return "userprofilepage";
     }
