@@ -25,7 +25,6 @@ public class EditUserController {
         return "redirect:/admin";
     }
 
-
     @PostMapping("/emailSearch")
     public String getUserProfileByEmail(@RequestParam("emailS") String email, Model model){
         User user = userService.findUserByEmail(email);
