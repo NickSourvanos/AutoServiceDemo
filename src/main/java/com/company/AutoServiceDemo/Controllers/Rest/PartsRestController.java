@@ -11,14 +11,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api")
-public class GetPartController {
+public class PartsRestController {
 
     @Autowired
     PartService partService;
 
     @GetMapping(value = "/parts")
     public List<Part> findAllParts(){
-        List<Part> parts = partService.getAllParts();
-        return parts;
+        return partService.getAllParts();
     }
 }

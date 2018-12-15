@@ -22,10 +22,8 @@ public class ReadUsersRestController {
 
     @GetMapping(value = "/user")
     public User getUserById(@RequestParam("id") Long user_id){
-        User user = userService.getUserById(user_id);
-        return user;
+        return userService.getUserById(user_id);
     }
-
 
     @GetMapping(value = "/user/deleteUser")
     public void deleteUser(@RequestParam("id") Long id) {

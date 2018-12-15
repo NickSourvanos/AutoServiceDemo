@@ -3,7 +3,7 @@
 <header>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>IREAD</title>
+    <title>Services</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=greek" rel="stylesheet">
@@ -78,13 +78,13 @@
                 </a>
             </div>
             <ul class="nav">
-                <li  class="active">
-                    <a class="nav-link" href="">
+                <li>
+                    <a class="nav-link" href="/admin">
                        <i class="nc-icon nc-notes"></i>
                        <p>Users</p>
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a class="nav-link" href="/admin/services">
                         <i class="nc-icon nc-circle-09"></i>
                         <p>Services</p>
@@ -129,23 +129,23 @@
                     <div class="col-sm-12 col-md-12 col-lg-12">
                         <div class="card ">
                             <div class="card-header ">
-
                                 <div class="d-flex bd-highlight mb-3">
                                     <div class="mr-auto p-2 bd-highlight">
-                                        <h4 style="padding-bottom: 0.6em;" class="card-title">Users</h4>
+                                        <h4 style="padding-bottom: 0.6em;" class="card-title">Repairs</h4>
+                                        <!-- TODO: Add data target -->
                                         <button id="students" class="btn btn-primary"
-                                                data-toggle="modal" data-target="#addUserFormModal">Add User</button>
+                                                data-toggle="modal" data-target="">Add Repair</button>
                                     </div>
 
-
                                     <div class="p-2 bd-highlight">
-                                        <form id="afmSearchForm" action="/admin/user/afmSearch" method="POST">
+                                        <!-- TODO: Add action -->
+                                        <form id="afmSearchForm" action="" method="POST">
                                             <input id="afmS" name="afmS" class="form-control form-control-sm mr-2 w-95" type="text" placeholder="AFM" aria-label="Search">
                                         </form>
                                     </div>
-
+                                        <!-- TODO: Add onclick -->
                                     <div class="p-2 bd-highlight">
-                                        <button class="btn" onclick="document.getElementById('afmSearchForm').submit();">
+                                        <button class="btn" onclick="document.getElementById('').submit();">
                                             <i class="fa fa-search" aria-hidden="true"></i>
                                         </button>
 

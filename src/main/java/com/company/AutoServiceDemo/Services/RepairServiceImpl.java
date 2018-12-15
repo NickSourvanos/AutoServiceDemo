@@ -7,11 +7,13 @@ import com.company.AutoServiceDemo.Repository.RepairRepository;
 import com.company.AutoServiceDemo.Repository.UserRepository;
 import com.company.AutoServiceDemo.Repository.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import javax.transaction.Transactional;
+import java.awt.print.Pageable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,6 +46,12 @@ public class RepairServiceImpl implements RepairService {
 
         return repairs;
     }
+
+    @Override
+    public List<Repair> findFirst10ByOrderByRepairDateAsc() {
+        return repairRepository.findFirst10ByOrderByRepairDateAsc();
+    }
+
 
     @Transactional
     public Repair saveRepair(Repair repair) {
