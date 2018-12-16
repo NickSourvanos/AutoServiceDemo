@@ -6,7 +6,6 @@ import com.company.AutoServiceDemo.Domain.Vehicle;
 
 import java.util.List;
 
-
 public interface RepairService {
 
     Repair saveRepair(Repair repair);
@@ -18,5 +17,10 @@ public interface RepairService {
     List<Repair> findByRepairDateBetween(String startDate, String endDate);
 
     List<Repair> findFirst10ByOrderByRepairDateAsc();
+
+    Repair findRepairByRepairId(Long repairId);
+
+    void deleteByRepairId(Long repairId);
+
 
 }

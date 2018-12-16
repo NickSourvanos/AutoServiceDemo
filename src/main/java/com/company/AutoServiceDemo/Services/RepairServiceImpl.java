@@ -53,6 +53,16 @@ public class RepairServiceImpl implements RepairService {
         return repairRepository.findFirst10ByOrderByRepairDateAsc();
     }
 
+    @Override
+    public Repair findRepairByRepairId(Long repairId) {
+        return repairRepository.findRepairByRepairId(repairId);
+    }
+
+    @Transactional
+    public void deleteByRepairId(Long repairId) {
+        repairRepository.deleteByRepairId(repairId);
+    }
+
     @Transactional
     public Repair saveRepair(Repair repair) {
         return repairRepository.save(repair);
