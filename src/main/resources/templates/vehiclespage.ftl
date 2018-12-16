@@ -234,9 +234,9 @@
                             <div class="form-group">
                                 <label for="date">Date</label>
                                 <#list vehicles as vehicle>
-                                    <input type="hidden" name="vehicle" value="${vehicle}">
+                                    <input type="hidden" name="vehicle" value="${vehicle.getVehicleId()}">
                                 </#list>
-                                <input type="text" name="date" class="form-control" placeholder="Enter Date" required="true">
+                                <input type="text" name="repairDate" class="form-control" placeholder="Enter Date" required="true">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -258,15 +258,15 @@
                                 <label for="repairType">Repair Type</label>
                                 <select class="form-control" name="repairType">
                                     <option selected disabled>Select...</option>
-                                    <optionv value="MINOR_REPAIR">Minor Repair</optionv>
+                                    <option value="MINOR_REPAIR">Minor Repair</option>
                                     <option value="MAJOR_REPAIR">Major Repair</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="repairStatus">Status</label>
-                                <select class="form-control" name="repairStatus">
+                                <label for="status">Status</label>
+                                <select class="form-control" name="status">
                                     <option selected disabled>Select...</option>
                                     <option value="PENDING">Pending</option>
                                     <option value="COMPLETED">Completed</option>
@@ -283,13 +283,14 @@
                             </div>
                         </div>
                     </div>
-                </form>
+
             </div>
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button class="btn btn-primary">Create Repair</button>
+                <button type="submit" class="btn btn-primary">Create Repair</button>
             </div>
+            </form>
         </div>
     </div>
 </div>

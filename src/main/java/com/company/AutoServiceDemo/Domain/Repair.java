@@ -43,7 +43,7 @@ public class Repair {
     private Vehicle vehicle;
 
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     @JoinColumn(name = "part_id")
     private Part part;
 

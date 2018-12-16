@@ -39,7 +39,7 @@ function populateParts(){
         success: function(result){
             var part_data = '';
             result.forEach(function(d){
-                part_data += '<input type="checkbox">' + d.type + '</input>';
+                part_data += '<input type="checkbox">' + d.repairType + '</input>';
                 part_data += '<br>';
             });
             //$('#partsListAddFormModal').html(part_data);
