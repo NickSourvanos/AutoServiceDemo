@@ -171,6 +171,11 @@
                                                     <i class="fa fa-edit" style="font-size:24px; text-align: center"></i>
                                                     </button>
                                                 </td>
+                                            <td style="padding-left: 1.5em;">
+                                                <button class="btn" data-toggle="modal" data-target="#addRepairFormModal">
+                                                    <i class="fa fa-plus" style="font-size:24px; text-align: center"></i>
+                                                    </button>
+                                            </td>
 
                                             <!--
                                             vehicles_data += '<td style="padding-left: 1.5em;">' +
@@ -213,6 +218,81 @@
     </div>
 </div>
 
+<div class="modal fade" id="addRepairFormModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add Repair</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="addRepairForm" name="addRepairForm" class="form-horizontal" action="/admin/repairs/createRepair" method="POST">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="date">Date</label>
+                                <#list vehicles as vehicle>
+                                    <input type="hidden" name="vehicle" value="${vehicle}">
+                                </#list>
+                                <input type="text" name="date" class="form-control" placeholder="Enter Date" required="true">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="cost">Cost</label>
+                                <input type="text" name="cost" class="form-control" placeholder="Enter Cost" required="true">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="description">Description</label>
+                                <input type="text" name="description" class="form-control" placeholder="Enter Description" required="true">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="repairType">Repair Type</label>
+                                <select class="form-control" name="repairType">
+                                    <option selected disabled>Select...</option>
+                                    <optionv value="MINOR_REPAIR">Minor Repair</optionv>
+                                    <option value="MAJOR_REPAIR">Major Repair</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="repairStatus">Status</label>
+                                <select class="form-control" name="repairStatus">
+                                    <option selected disabled>Select...</option>
+                                    <option value="PENDING">Pending</option>
+                                    <option value="COMPLETED">Completed</option>
+                                    <option value="IN_PROGRESS">In Progress</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="partTypeListAddForm">Part Type</label>
+                                <fieldset id="partsListAddForm">
+                                    <#-- Parts get populated here -->
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button class="btn btn-primary">Create Repair</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="modal fade" id="addVehicleFormModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">

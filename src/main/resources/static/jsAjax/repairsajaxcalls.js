@@ -1,6 +1,3 @@
-$(document).ready(function () {
-    populateRepairsTable();
-});
 
 /* Fills table with last 10 Repairs */
 function populateRepairsTable(){

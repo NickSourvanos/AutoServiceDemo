@@ -355,9 +355,13 @@
     </div>
 </div>
 
-<script>$(document).ready(function () {
-    populateRepairsTable();
-});</script>
+<script>
+
+    $(document).ready(function () {
+        populateRepairsTable();
+    });
+
+</script>
 
 
 <script src="/jsAjax/repairsajaxcalls.js" type="text/javascript"></script>

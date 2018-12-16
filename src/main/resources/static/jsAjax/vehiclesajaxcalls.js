@@ -28,6 +28,7 @@ function populateVehiclesTable(){
                     '<i class="fa fa-remove" style="font-size:24px; text-align: center"></i>'+
                     '</button></form>' +
                     '</td>';
+
                 vehicles_data += '</tr>';
             });
             $('#vehiclesList').html(vehicles_data);
