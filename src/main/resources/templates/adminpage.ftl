@@ -396,7 +396,6 @@
     $('document').ready(function () {
         populateTable();
     });
-
 </script>
 
 <script src="/jsAjax/userajaxcalls.js" type="text/javascript"></script>
