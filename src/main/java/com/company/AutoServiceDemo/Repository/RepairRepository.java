@@ -7,6 +7,7 @@ import com.company.AutoServiceDemo.Domain.Vehicle;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.awt.print.Pageable;
 import java.util.List;
 
@@ -16,4 +17,10 @@ public interface RepairRepository extends JpaRepository<Repair, Long> {
     List<Repair> getRepairsByVehicle(Vehicle vehicle);
 
     List<Repair> findFirst10ByOrderByRepairDateAsc();
+
+    Repair save(Repair repair);
+
+    Repair findRepairByRepairId(Long repairId);
+
+    void deleteByRepairId(Long repairId);
 }

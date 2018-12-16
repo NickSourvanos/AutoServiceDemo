@@ -85,9 +85,9 @@
                     </a>
                 </li>
                 <li>
-                    <a class="nav-link" href="/admin/services">
+                    <a class="nav-link" href="/admin/repairs">
                         <i class="nc-icon nc-circle-09"></i>
-                        <p>Services</p>
+                        <p>Repairs</p>
                     </a>
                 </li>
             </ul>
@@ -128,15 +128,13 @@
                 <div class="row">
                     <div class="col-sm-12 col-md-12 col-lg-12">
                         <div class="card ">
-                            <div class="card-header ">
-
+                            <div class="card-header">
                                 <div class="d-flex bd-highlight mb-3">
                                     <div class="mr-auto p-2 bd-highlight">
                                         <h4 style="padding-bottom: 0.6em;" class="card-title">Users</h4>
                                         <button id="students" class="btn btn-primary"
                                                 data-toggle="modal" data-target="#addUserFormModal">Add User</button>
                                     </div>
-
 
                                     <div class="p-2 bd-highlight">
                                         <form id="afmSearchForm" action="/admin/user/afmSearch" method="POST">
@@ -381,7 +379,6 @@
                 </button>
             </div>
             <form id="editUserForm" action="/admin/user/updateUser" method="POST">
-
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">

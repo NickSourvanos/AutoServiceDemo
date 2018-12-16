@@ -18,5 +18,9 @@ public interface RepairService {
 
     List<Repair> findFirst10ByOrderByRepairDateAsc();
 
+    Repair findRepairByRepairId(Long repairId);
+
+    void deleteByRepairId(Long repairId);
+
 
 }
