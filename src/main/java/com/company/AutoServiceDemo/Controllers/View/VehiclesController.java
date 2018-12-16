@@ -29,5 +29,14 @@ public class VehiclesController {
         return "vehiclespage";
     }
 
+    @PostMapping("/user/addVehicle")
+    public String addVehicle(Vehicle vehicle){
+        String redirect = "redirect:/admin/vehicles/user?id="+vehicle.getUser().getId().toString();
+        vehicleService.saveVehicle(vehicle);
+
+        return redirect;
+    }
+
+
 
 }
