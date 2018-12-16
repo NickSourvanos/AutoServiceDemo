@@ -191,14 +191,14 @@
                                                 <i class="fa fa-edit" style="font-size:24px; text-align: center"></i>
                                                 </button></td>
                                             <td style="padding-left: 1.5em;">
-                                                <form action="/vehicles/user" method="GET">
+                                                <form action="/admin/vehicles/user" method="GET">
                                                     <input type="hidden" name="id" value="${user.getId()}"/>
                                                     <button class="btn" type="submit" >
                                                         <i class="fa fa-edit" style="font-size:24px; text-align: center"></i>
                                                         </button></form>
                                                 </td>
                                             <td style="padding-left: 1.5em;">
-                                                <form action="/user/deleteUser" method="GET">
+                                                <form action="/admin/user/deleteUser" method="GET">
                                                     <input type="hidden" name="id" value="${user.getId()}"/>
                                                     <button class="btn" type="submit" >
                                                         <i class="fa fa-remove" style="font-size:24px; text-align: center"></i>
@@ -316,7 +316,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="editUserForm" action="/user/updateUser" method="POST">
+            <form id="editUserForm" action="/admin/user/userProfileUpdate" method="POST">
 
                 <div class="modal-body">
                     <div class="row">
@@ -390,7 +390,7 @@
 </div>
 
 
-
+<script src="/jsAjax/vehiclesajaxcalls.js" type="text/javascript"></script>
 <script src="/jsAjax/userajaxcalls.js" type="text/javascript"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

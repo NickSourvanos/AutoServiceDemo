@@ -24,7 +24,7 @@ public class EditVehicleController {
     public String deleteVehicle(@RequestParam("vehicleId") Long vehicleId){
         Vehicle v = vehicleService.getVehicleByVehicleId(vehicleId);
         vehicleRepository.delete(v);
-        return "redirect:/vehicles";
+        return "redirect:/vehicleslistpage";
     }
 
     @PostMapping(value = "/updateVehicle")

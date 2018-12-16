@@ -304,7 +304,7 @@
 <script>
 
     $('document').ready(function () {
-        populateTable();
+        populateVehiclesTable();
     })
 
 </script>

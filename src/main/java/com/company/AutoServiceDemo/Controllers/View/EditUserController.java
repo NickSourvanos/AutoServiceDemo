@@ -57,9 +57,26 @@ public class EditUserController {
         return "redirect:/admin";
     }
 
-   /* @GetMapping(value = "/deleteUser")
+    @PostMapping("/userProfileUpdate")
+    public String UserProfileUpdate(User user){
+
+        User newUser = userService.getUserById(user.getId());
+
+        newUser.setAfm(user.getAfm());
+        newUser.setEmail(user.getEmail());
+        newUser.setAddress(user.getAddress());
+        newUser.setFirstName(user.getFirstName());
+        newUser.setLastName(user.getLastName());
+        newUser.setPassword(user.getPassword());
+        newUser.setRoleType(user.getRoleType());
+
+        userRepository.save(user);
+        return "userprofilepage";
+    }
+
+    @GetMapping(value = "/deleteUser")
     public String deleteUser(User user){
         userService.deleteUser(user);
         return "redirect:/admin";
-    }*/
+    }
 }

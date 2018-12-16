@@ -1,9 +1,9 @@
 
 $('document').ready(function () {
-    populateTable();
+    populateVehiclesTable();
 })
 
-function populateTable(){
+function populateVehiclesTable(){
     $.ajax({
         type: 'GET',
         url: 'http://localhost:8080/vehicles/api/vehicles',
@@ -33,6 +33,10 @@ function populateTable(){
             $('#vehiclesList').html(vehicles_data);
         }
     });
+}
+
+function createVehicle(userId){
+
 }
 
 function updateVehicle(vehicleId){
