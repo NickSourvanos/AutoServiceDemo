@@ -2,13 +2,17 @@ package com.company.AutoServiceDemo.Controllers.View;
 
 import com.company.AutoServiceDemo.Domain.User;
 import com.company.AutoServiceDemo.Domain.Vehicle;
+import com.company.AutoServiceDemo.Forms.VehicleForm;
 import com.company.AutoServiceDemo.Services.UserService;
 import com.company.AutoServiceDemo.Services.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.naming.Binding;
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -21,6 +25,7 @@ public class VehiclesController {
     @Autowired
     private UserService userService;
 
+
     @GetMapping("/user")
     public String getUserVehicles(@RequestParam("id") Long userId, Model model){
         User user = userService.getUserById(userId);
@@ -30,9 +35,20 @@ public class VehiclesController {
     }
 
     @PostMapping("/user/addVehicle")
-    public String addVehicle(Vehicle vehicle){
-        String redirect = "redirect:/admin/vehicles/user?id="+vehicle.getUser().getId().toString();
-        vehicleService.saveVehicle(vehicle);
+    public String addVehicle(@Valid VehicleForm vehicle, BindingResult bindingResult){
+        String redirect = "redirect:/admin/vehicles/user?id="+vehicle.getUser().toString();
+        User user = userService.getUserById(vehicle.getUser());
+        Vehicle newVehicle = new Vehicle();
+
+        if(bindingResult.hasErrors()){
+            return redirect;
+        }
+        newVehicle.setPlateNUmber(vehicle.getPlateNUmber());
+        newVehicle.setYearOfManufacture(vehicle.getYearOfManufacture());
+        newVehicle.setModel(vehicle.getModel());
+        newVehicle.setColor(vehicle.getColor());
+        newVehicle.setUser(user);
+        vehicleService.saveVehicle(newVehicle);
 
         return redirect;
     }
