@@ -140,7 +140,7 @@
 
                                     <div class="p-2 bd-highlight">
                                         <form id="afmSearchForm" action="/admin/user/afmSearch" method="POST">
-                                            <input id="afmS" name="afmS" class="form-control form-control-sm mr-2 w-95" type="text" placeholder="AFM" aria-label="Search">
+                                            <input id="afmS" name="afmS" class="form-control form-control-sm mr-2 w-95" type="text" placeholder="AFM" aria-label="Search" required="true">
                                         </form>
                                     </div>
 
@@ -153,7 +153,7 @@
 
                                     <div class="p-2 bd-highlight">
                                         <form id="emailSearchForm" action="/admin/user/emailSearch" method="POST">
-                                            <input id="emailS" type="email" name="emailS" class="form-control form-control-sm mr-5 w-95" type="text" placeholder="Email" aria-label="Search">
+                                            <input id="emailS" type="email" name="emailS" class="form-control form-control-sm mr-5 w-95" type="text" placeholder="Email" aria-label="Search" required="true">
                                         </form>
                                     </div>
 
@@ -188,32 +188,6 @@
                             </div>
                         </div>
 
-                        <div class="card ">
-                            <div class="card-header ">
-
-                            </div>
-                            <div class="container">
-                                <div class="card-body table-full-width table-responsive">
-                                    <table id="dataTablesUsers" style="width: 100%" class="table table-hover">
-                                        <thead>
-                                        <tr>
-                                            <th>First Name</th>
-                                            <th>Last Name</th>
-                                            <th>Email</th>
-                                            <th>AFM</th>
-                                            <th>Manage</th>
-                                            <th>Vehicles</th>
-                                            <th>Delete</th>
-                                        </tr>
-                                        </thead>
-
-
-                                    </table>
-                                </div>
-                                </div>
-                            <div class="card-footer ">
-                            </div>
-                        </div>
 
                     </div>
                 </div>

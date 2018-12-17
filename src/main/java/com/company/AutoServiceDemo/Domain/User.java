@@ -40,7 +40,7 @@ public class User {
     private RoleType roleType;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "user", targetEntity = Vehicle.class)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, targetEntity = Vehicle.class)
     private List<Vehicle> vehicles;
 
     public User() {}

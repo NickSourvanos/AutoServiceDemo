@@ -145,7 +145,7 @@
 
 
                                     <div class="p-2 bd-highlight">
-                                        <input id="afmS" name="afmS" class="form-control form-control-sm mr-2 w-95" type="text" placeholder="AFM" aria-label="Search">
+                                        <input id="afmS" name="afmS" class="form-control form-control-sm mr-2 w-95" type="text" placeholder="AFM" aria-label="Search" required="true">
                                     </div>
 
                                     <div class="p-2 bd-highlight">
@@ -157,7 +157,7 @@
 
                                     <div class="p-2 bd-highlight">
                                         <form id="emailSearchForm" action="/vehicles/searchemail" method="POST">
-                                            <input id="emailS" name="emailS" class="form-control form-control-sm mr-5 w-95" type="text" placeholder="Email" aria-label="Search">
+                                            <input id="emailS" name="emailS" class="form-control form-control-sm mr-5 w-95" type="text" placeholder="Email" aria-label="Search" required="true">
                                         </form>
                                     </div>
 
