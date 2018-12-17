@@ -11,13 +11,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.naming.Binding;
 import javax.validation.Valid;
 import java.util.List;
 
 @Controller
 @RequestMapping(value = "/admin/vehicles")
-public class VehiclesController {
+public class  VehiclesController {
 
     @Autowired
     private VehicleService vehicleService;
@@ -31,7 +30,7 @@ public class VehiclesController {
         User user = userService.getUserById(userId);
         List<Vehicle> vehicles = vehicleService.findAllByUser(user);
         model.addAttribute("vehicles", vehicles);
-        return "vehiclespage";
+        return "vehicles-page";
     }
 
     @PostMapping("/user/addVehicle")

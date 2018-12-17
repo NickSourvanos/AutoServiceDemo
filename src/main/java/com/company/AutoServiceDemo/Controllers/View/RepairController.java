@@ -2,7 +2,6 @@ package com.company.AutoServiceDemo.Controllers.View;
 
 import com.company.AutoServiceDemo.Domain.Repair;
 import com.company.AutoServiceDemo.Domain.User;
-import com.company.AutoServiceDemo.Domain.Vehicle;
 import com.company.AutoServiceDemo.Services.RepairService;
 import com.company.AutoServiceDemo.Services.UserService;
 import com.company.AutoServiceDemo.Services.VehicleService;
@@ -34,7 +33,7 @@ public class RepairController {
         User user = userService.getUserById(useId);
         List<Repair> repairs = repairService.getRepairsByUser(user);
         model.addAttribute("repairs", repairs);
-        return "repairspage";
+        return "repairs-page";
     }
 
     @PostMapping(value = "/admin/repairs/createRepair")

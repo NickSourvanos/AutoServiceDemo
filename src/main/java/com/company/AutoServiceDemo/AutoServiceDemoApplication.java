@@ -16,12 +16,8 @@ import java.util.logging.Logger;
 
 
 @SpringBootApplication
-public class AutoServiceDemoApplication  implements CommandLineRunner {
+public class AutoServiceDemoApplication  implements WebMvcConfigurer {
 
-	private static final Logger LOGGER = Logger.getLogger( TypeData.ClassName.class.getName() );
-
-	@Autowired
-	private RepairService repairService;
 
 	public static void main(String[] args) {
 
@@ -29,14 +25,5 @@ public class AutoServiceDemoApplication  implements CommandLineRunner {
 
 	}
 
-	@Override
-	public void run(String... args) throws Exception {
-		List<Repair> repairList = repairService.findFirst10ByOrderByRepairDateAsc();
 
-
-
-		for(Repair r : repairList){
-			LOGGER.info(r.getRepairDate());
-		}
-	}
 }

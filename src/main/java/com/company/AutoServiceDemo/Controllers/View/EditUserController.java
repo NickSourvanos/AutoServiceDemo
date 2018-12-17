@@ -1,12 +1,17 @@
 package com.company.AutoServiceDemo.Controllers.View;
 
 import com.company.AutoServiceDemo.Domain.User;
+import com.company.AutoServiceDemo.Forms.AddUserForm;
 import com.company.AutoServiceDemo.Repository.UserRepository;
 import com.company.AutoServiceDemo.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.Optional;
 
 
 @Controller
@@ -20,16 +25,39 @@ public class EditUserController {
     private UserRepository userRepository;
 
     @PostMapping(value = "/createUser")
-    public String createUser(@ModelAttribute("user") User user){
-        userService.saveUser(user);
-        return "redirect:/admin";
+    public String createUser(@Valid  @ModelAttribute("addUserForm") AddUserForm userForm,
+                             BindingResult bindingResult, Model model){
+
+        if (bindingResult.hasErrors()) {
+            //have some error handling here, perhaps add extra error messages to the model
+            model.addAttribute("message", "an error occurred");
+            return "redirect:/admin-page";
+        }
+
+        User newUser = new User();
+        newUser.setAfm(userForm.getAfm());
+        newUser.setAddress(userForm.getAddress());
+        newUser.setEmail(userForm.getEmail());
+        newUser.setFirstName(userForm.getFirstName());
+        newUser.setLastName(userForm.getAfm());
+        newUser.setPassword(userForm.getPassword());
+        newUser.setRoleType(userForm.getRoleType());
+
+        Optional<User> dublicateUser = userRepository.getUserByAfmAndEmail(userForm.getAfm(), userForm.getEmail());
+
+        if(dublicateUser.isEmpty()){
+            userService.saveUser(newUser);
+            model.addAttribute("message", "Success");
+        }
+
+        return "redirect:/admin-page";
     }
 
     @PostMapping("/emailSearch")
     public String getUserProfileByEmail(@RequestParam("emailS") String email, Model model){
         User user = userService.findUserByEmail(email);
         model.addAttribute("user", user);
-        return "userprofilepage";
+        return "user-profile-page";
     }
 
     @PostMapping("/afmSearch")
@@ -37,7 +65,7 @@ public class EditUserController {
         User user = userService.findUserByAfm(afm);
 
         model.addAttribute("user", user);
-        return "userprofilepage";
+        return "user-profile-page";
     }
 
     @PostMapping("/updateUser")
@@ -71,7 +99,7 @@ public class EditUserController {
         newUser.setRoleType(user.getRoleType());
 
         userRepository.save(user);
-        return "userprofilepage";
+        return "user-profile-page";
     }
 
     @GetMapping(value = "/deleteUser")

@@ -59,6 +59,10 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll();
     }
 
+    @Override
+    public Optional<User> getUserByAfmAndEmail(String afm, String email) {
+        return userRepository.getUserByAfmAndEmail(afm, email);
+    }
 
 
 }
