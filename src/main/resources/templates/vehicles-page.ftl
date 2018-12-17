@@ -104,6 +104,7 @@
                                         <th>Color</th>
                                         <th>Model</th>
                                         <th>Edit</th>
+                                        <th>Repair</th>
                                     </tr>
                                     </thead>
                                     <tbody>

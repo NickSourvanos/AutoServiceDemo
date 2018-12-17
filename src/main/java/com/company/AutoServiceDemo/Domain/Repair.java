@@ -42,11 +42,6 @@ public class Repair {
     @JoinColumn(name = "vehicle_id")
     private Vehicle vehicle;
 
-
-    @ManyToOne
-    @JoinColumn(name = "part_id")
-    private Part part;
-
     public Repair(){}
 
     public Long getRepairId() {
@@ -103,14 +98,6 @@ public class Repair {
 
     public void setVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
-    }
-
-    public Part getPart() {
-        return part;
-    }
-
-    public void setPart(Part part) {
-        this.part = part;
     }
 
 }
