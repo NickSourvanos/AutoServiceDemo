@@ -1,5 +1,3 @@
-
-/* Fills table with last 10 Repairs */
 function populateRepairsTable(){
     $.ajax({
         type: 'GET',
@@ -21,7 +19,7 @@ function populateRepairsTable(){
                     '</td>';
                 repair_data += '<td style="padding-left: 1.5em;">' +                     ///DELETE
                     '<button class="btn" onclick="deleterepair(' + d.repairId + ')">'+
-                    '<i class="fa fa-edit" style="font-size:24px; text-align: center"></i>'+
+                    '<i class="fa fa-remove" style="font-size:24px; text-align: center"></i>'+
                     '</button>' +
                     '</td>';
                 repair_data += '</tr>';
@@ -31,7 +29,6 @@ function populateRepairsTable(){
     });
 }
 
-/* Fill form input with parts*/
 function populateParts(){
     $.ajax({
         type: 'GET',
@@ -39,10 +36,9 @@ function populateParts(){
         success: function(result){
             var part_data = '';
             result.forEach(function(d){
-                part_data += '<input type="checkbox">' + d.repairType + '</input>';
-                part_data += '<br>';
+                part_data += '<input type="checkbox" value="' + d.repairType + '">' + d.repairType + '<br>';
             });
-            //$('#partsListAddFormModal').html(part_data);
+
             $('#partsListAddForm').html(part_data);
             $('#partsListEditForm').html(part_data);
         }
@@ -64,13 +60,6 @@ function deleterepair(repairId){
     }
 }
 
-// function redirect(){
-//     $.ajax({
-//         type: 'GET',
-//         url: 'http://localhost:8080/admin/vehicles'
-//     });
-// }
-//
 
 function updaterepair(repairId){
     $.ajax({

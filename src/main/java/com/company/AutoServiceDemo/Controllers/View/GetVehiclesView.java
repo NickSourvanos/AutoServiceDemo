@@ -8,7 +8,7 @@ public class GetVehiclesView {
 
     @GetMapping(value = "/vehicles")
     public String getVehiclesPage(){
-        return "vehicleslistpage";
+        return "vehicles-list-page";
     }
 
 }

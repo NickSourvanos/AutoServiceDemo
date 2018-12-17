@@ -10,7 +10,7 @@ public class AdminPageController {
 
     @GetMapping
     public String addUser(){
-        return "adminpage";
+        return "admin-page";
     }
 
     @GetMapping(value = "/repairs")

@@ -37,8 +37,6 @@ function populateTable(){
 
 }
 
-
-
 function redirect(){
     $.ajax({
         type: 'GET',

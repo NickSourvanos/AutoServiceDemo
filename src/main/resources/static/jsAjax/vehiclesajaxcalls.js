@@ -1,8 +1,3 @@
-
-$('document').ready(function () {
-    populateVehiclesTable();
-})
-
 function populateVehiclesTable(){
     $.ajax({
         type: 'GET',
@@ -39,6 +34,7 @@ function populateVehiclesTable(){
 function createVehicle(userId){
 
 }
+
 
 function updateVehicle(vehicleId){
 
