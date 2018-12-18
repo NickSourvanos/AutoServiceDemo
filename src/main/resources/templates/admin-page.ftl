@@ -283,18 +283,10 @@
     </div>
 
 
-    <script>
-        $(document).ready(function () {
-            populateTable();
-        });
-
-    </script>
-
     <#--TODO: Ask Ema-->
     <#--alertMessage(${message}, function(){-->
         <#--alert(${message});-->
     <#--});-->
-
 
     <!-- SCRIPTS  -->
     <#include "partials/common-scripts.ftl">

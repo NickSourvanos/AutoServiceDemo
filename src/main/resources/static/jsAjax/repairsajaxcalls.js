@@ -1,4 +1,5 @@
 function populateRepairsTable(){
+
     $.ajax({
         type: 'GET',
         url: 'http://localhost:8080/admin/api/repairs',
@@ -63,3 +64,7 @@ function updaterepair(repairId){
         }
     });
 }
+
+$(document).ready(function () {
+    populateRepairsTable();
+})

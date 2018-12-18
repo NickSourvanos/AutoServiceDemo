@@ -11,36 +11,8 @@
 
 <div class="wrapper">
 
+    <#include "partials/sidebar.ftl">
 
-
-    <div class="sidebar" >
-        <!--
-    Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
-
-    Tip 2: you can also add an image using data-image tag
--->
-        <div class="sidebar-wrapper">
-            <div class="logo">
-                <a href="" class="simple-text">
-
-                </a>
-            </div>
-            <ul class="nav">
-                <li  class="active">
-                    <a class="nav-link" href="">
-                        <i class="nc-icon nc-notes"></i>
-                        <p>Users</p>
-                    </a>
-                </li>
-                <li>
-                    <a class="nav-link" href="userprofile.html">
-                        <i class="nc-icon nc-circle-09"></i>
-                        <p>Services</p>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
     <div class="main-panel">
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg " color-on-scroll="500">
@@ -261,13 +233,14 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="vehicleForm" name="vehicleForm" class="form-horizontal" action="/admin/vehicles/user/addVehicle" method="POST">
+            <form id="addVehicleForm" name="addVehicleForm" class="form-horizontal" action="/admin/vehicles/user/addVehicle" method="POST">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input id="user" type="hidden" name="user" value="${user.getId()}"/>
-
+                                <#list vehicles as v>
+                                    <input id="user" type="hidden" name="user" value="${v.getUser().getId()}"/>
+                                </#list>
                                 <label for="plateNumber">Plate Number</label>
                                 <input type="text" name="plateNUmber" class="form-control" placeholder="Enter plate number" required="true">
                             </div>
@@ -358,9 +331,6 @@
     </div>
 </div>
 
-
-<#include "partials/common-scripts.ftl">
-
-
+    <#include "partials/common-scripts.ftl">
 </body>
 </html>

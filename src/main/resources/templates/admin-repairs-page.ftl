@@ -246,11 +246,6 @@
         </div>
     </div>
 
-    <script>
-        $(document).ready(function () {
-            populateRepairsTable();
-        });
-    </script>
     <!-- SCRIPTS-->
     <#include "partials/common-scripts.ftl">
 
