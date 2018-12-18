@@ -2,6 +2,7 @@ package com.company.AutoServiceDemo.Controllers.View;
 
 import com.company.AutoServiceDemo.Domain.Repair;
 import com.company.AutoServiceDemo.Domain.User;
+import com.company.AutoServiceDemo.Domain.Vehicle;
 import com.company.AutoServiceDemo.Services.RepairService;
 import com.company.AutoServiceDemo.Services.UserService;
 import com.company.AutoServiceDemo.Services.VehicleService;
@@ -40,5 +41,23 @@ public class RepairController {
     public String createRepair(@ModelAttribute("repair") Repair repair){
         repairService.saveRepair(repair);
         return "redirect:/admin";
+    }
+
+    @PostMapping(value = "/admin/repairs/updateRepair")
+    public String updateRepair(@RequestParam("vehicleId") Long id,  Repair repair){
+
+        Vehicle vehicle = vehicleService.getVehicleByVehicleId(id);
+        System.out.println(vehicle.getVehicleId());
+        Repair newRepair = new Repair();
+        newRepair.setRepairId(repair.getRepairId());
+        newRepair.setVehicle(vehicle);
+        newRepair.setCost(repair.getCost());
+        newRepair.setDescription(repair.getDescription());
+        newRepair.setRepairDate(repair.getRepairDate());
+        newRepair.setRepairType(repair.getRepairType());
+        newRepair.setStatus(repair.getStatus());
+
+        repairService.saveRepair(newRepair);
+        return "redirect:/admin/repairs";
     }
 }

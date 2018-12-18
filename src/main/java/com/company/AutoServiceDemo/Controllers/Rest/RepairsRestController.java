@@ -24,9 +24,10 @@ public class RepairsRestController {
         return repairService.findRepairByRepairId(repairId);
     }
 
-    @PostMapping(value = "/repairs/deleteRepair")
+    @GetMapping(value = "/repairs/deleteRepair")
     public void deleteRepair(@RequestParam(value = "id") Long repairId){
-        repairService.deleteByRepairId(repairId);
+        Repair repair = repairService.findRepairByRepairId(repairId);
+        repairService.delete(repair);
     }
 
 }

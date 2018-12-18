@@ -156,14 +156,6 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="partTypeListAddForm">Part Type</label>
-                                    <fieldset id="partsListAddForm">
-                                    <#-- Parts get populated here -->
-                                    </fieldset>
-                                </div>
-                            </div>
                         </div>
                     </form>
                 </div>
@@ -188,13 +180,14 @@
                 </div>
             <#-- Add actions -->
                 <div class="modal-body">
-                    <form id="editRepairForm" action="" method="POST">
+                    <form id="editRepairForm" action="/admin/repairs/updateRepair" method="POST">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="hidden" id="id" name="id">
-                                    <label for="date">Date</label>
-                                    <input type="text" id="date" name="date" class="form-control"
+                                    <input type="hidden" id="repairId" name="repairId">
+                                    <input type="hidden" id="vehicleId" name="vehicleId">
+                                    <label for="repairDate">Date</label>
+                                    <input type="text" id="repairDate" name="repairDate" class="form-control"
                                            placeholder="Enter Date" required="required">
                                 </div>
                             </div>
@@ -226,8 +219,8 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="repairStatus">Status</label>
-                                    <select class="form-control" id="repairStatus" name="repairStatus">
+                                    <label for="status">Status</label>
+                                    <select class="form-control" id="status" name="status">
                                         <option selected disabled>Select...</option>
                                         <option value="PENDING">Pending</option>
                                         <option value="COMPLETED">Completed</option>
@@ -235,21 +228,15 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="partType">Part Type</label>
-                                    <fieldset id="partsListEditForm" name="partType">
-                                    <#-- Here get populated Vehicle Parts -->
-                                    </fieldset>
-                                </div>
-                            </div>
+
                         </div>
-                    </form>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Update User</button>
+                    <button type="submit" class="btn btn-primary">Update Service</button>
                 </div>
+                </form>
             </div>
         </div>
     </div>

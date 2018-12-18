@@ -1,7 +1,10 @@
 package com.company.AutoServiceDemo.Controllers.View;
 
+import com.company.AutoServiceDemo.Domain.Repair;
 import com.company.AutoServiceDemo.Domain.Vehicle;
+import com.company.AutoServiceDemo.Repository.RepairRepository;
 import com.company.AutoServiceDemo.Repository.VehicleRepository;
+import com.company.AutoServiceDemo.Services.RepairService;
 import com.company.AutoServiceDemo.Services.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,22 +12,28 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.xml.bind.SchemaOutputResolver;
+import java.util.List;
 
 @Controller
-@RequestMapping(value = "/vehicles")
+@RequestMapping(value = "/admin")
 public class EditVehicleController {
 
     @Autowired
     private VehicleService vehicleService;
 
+
     @Autowired
-    private VehicleRepository vehicleRepository;
+    private RepairService repairService;
 
     @GetMapping(value = "/vehicle/deleteVehicle")
     public String deleteVehicle(@RequestParam("vehicleId") Long vehicleId){
         Vehicle v = vehicleService.getVehicleByVehicleId(vehicleId);
-        vehicleRepository.delete(v);
-        return "redirect:/vehicleslistpage";
+        List<Repair> repairs = repairService.getRepairsByVehicle(v);
+        for(Repair r : repairs){
+            repairService.delete(r);
+        }
+        vehicleService.delete(v);
+        return "redirect:/vehicles-list-page";
     }
 
     @PostMapping(value = "/updateVehicle")
@@ -36,7 +45,7 @@ public class EditVehicleController {
         newVehicle.setYearOfManufacture(vehicle.getYearOfManufacture());
         newVehicle.setPlateNUmber(vehicle.getPlateNUmber());
 
-        vehicleRepository.save(newVehicle);
+        vehicleService.save(newVehicle);
         System.out.println(newVehicle.getPlateNUmber());
         return "redirect:/vehicles";
     }

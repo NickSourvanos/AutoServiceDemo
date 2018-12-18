@@ -105,6 +105,7 @@
                                         <th>Model</th>
                                         <th>Edit</th>
                                         <th>Repair</th>
+                                        <th>Delete</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -120,11 +121,18 @@
                                                     <i class="fa fa-edit" style="font-size:24px; text-align: center"></i>
                                                     </button>
                                                 </td>
-                                            <td style="padding-left: 1.5em;">
-                                                <button class="btn" data-toggle="modal" data-target="#addRepairFormModal">
-                                                    <i class="fa fa-plus" style="font-size:24px; text-align: center"></i>
+                                                <td style="padding-left: 1.5em;">
+                                                    <button class="btn" data-toggle="modal" data-target="#addRepairFormModal">
+                                                        <i class="fa fa-plus" style="font-size:24px; text-align: center"></i>
                                                     </button>
-                                            </td>
+                                                </td>
+                                                <td style="padding-left: 1.5em;">
+                                                <form action="/admin/vehicle/deleteVehicle" method="GET">
+                                                    <input type="hidden" name="vehicleId" value="${vehicle.getVehicleId()}"/>
+                                                    <button class="btn" type="submit" >
+                                                        <i class="fa fa-remove" style="font-size:24px; text-align: center"></i>
+                                                        </button></form>
+                                                </td>
 
                                             <!--
                                             vehicles_data += '<td style="padding-left: 1.5em;">' +
@@ -314,6 +322,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <input id="vehicleId" name="vehicleId" type="hidden"/>
+                                <input id="repairId" name="repairId" type="hidden"/>
                                 <label for="plateNumber">Plate Number</label>
                                 <input id="plateNumber" type="text" name="plateNUmber" class="form-control" placeholder="Enter plate number" required="true">
                             </div>

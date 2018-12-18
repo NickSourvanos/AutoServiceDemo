@@ -20,7 +20,9 @@ public interface RepairService {
 
     Repair findRepairByRepairId(Long repairId);
 
-    void deleteByRepairId(Long repairId);
+    void delete(Repair repair);
+
+
 
 
 }

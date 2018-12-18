@@ -29,22 +29,6 @@ function populateRepairsTable(){
     });
 }
 
-function populateParts(){
-    $.ajax({
-        type: 'GET',
-        url: 'http://localhost:8080/admin/api/parts',
-        success: function(result){
-            var part_data = '';
-            result.forEach(function(d){
-                part_data += '<input type="checkbox" value="' + d.repairType + '">' + d.repairType + '<br>';
-            });
-
-            $('#partsListAddForm').html(part_data);
-            $('#partsListEditForm').html(part_data);
-        }
-    });
-}
-
 
 function deleterepair(repairId){
     var result = confirm("Are you sure? Repair ID: " + repairId);
@@ -54,7 +38,8 @@ function deleterepair(repairId){
             type: 'GET',
             url: 'http://localhost:8080/admin/api/repairs/deleteRepair?id='+repairId,
             success: function(){
-                populateTable();
+                alert("deleted");
+                populateRepairsTable();
             }
         });
     }
@@ -62,21 +47,19 @@ function deleterepair(repairId){
 
 
 function updaterepair(repairId){
+
     $.ajax({
         type: 'GET',
         url: 'http://localhost:8080/admin/api/repair?id='+repairId,
         success: function(result){
-
-            alert(result.repairId + "<br>" +
-                result.part.type
-            )
-            document.getElementById('id').value = result.repairId;
-            document.getElementById('date').value = result.repairDate;
+            alert(result.vehicle.vehicleId);
+            document.getElementById('vehicleId').value = result.vehicle.vehicleId;
+            document.getElementById('repairId').value = repairId;
+            document.getElementById('repairDate').value = result.repairDate;
             document.getElementById('cost').value = result.cost;
             document.getElementById('description').value = result.description;
-            document.getElementById('repairStatus').value = result.status;
+            document.getElementById('status').value = result.status;
             document.getElementById('repairType').value = result.repairType;
-            document.getElementById('partsListEditForm').value = result.part.type;
         }
     });
 }

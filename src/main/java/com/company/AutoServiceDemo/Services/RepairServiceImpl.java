@@ -59,9 +59,10 @@ public class RepairServiceImpl implements RepairService {
     }
 
     @Transactional
-    public void deleteByRepairId(Long repairId) {
-        repairRepository.deleteByRepairId(repairId);
+    public void delete(Repair repair) {
+        repairRepository.delete(repair);
     }
+
 
     @Transactional
     public Repair saveRepair(Repair repair) {
