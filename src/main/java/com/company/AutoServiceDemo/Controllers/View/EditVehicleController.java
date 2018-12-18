@@ -38,15 +38,22 @@ public class EditVehicleController {
 
     @PostMapping(value = "/updateVehicle")
     public String updateVehicle(Vehicle vehicle){
+        String redirect = "redirect:/admin/vehicles/user?id="+vehicle.getUser().getId();
+        System.out.println(vehicle.getUser());
         Vehicle newVehicle = vehicleService.getVehicleByVehicleId(vehicle.getVehicleId());
 
-        newVehicle.setColor(vehicle.getColor());
-        newVehicle.setModel(vehicle.getModel());
-        newVehicle.setYearOfManufacture(vehicle.getYearOfManufacture());
-        newVehicle.setPlateNUmber(vehicle.getPlateNUmber());
+        try{
+            newVehicle.setColor(vehicle.getColor());
+            newVehicle.setModel(vehicle.getModel());
+            newVehicle.setYearOfManufacture(vehicle.getYearOfManufacture());
+            newVehicle.setPlateNUmber(vehicle.getPlateNUmber());
 
-        vehicleService.save(newVehicle);
-        System.out.println(newVehicle.getPlateNUmber());
-        return "redirect:/vehicles";
+            vehicleService.save(newVehicle);
+        }catch(Exception e){
+            return redirect;
+        }
+
+
+        return redirect;
     }
 }

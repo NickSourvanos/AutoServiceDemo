@@ -31,16 +31,12 @@ function populateVehiclesTable(){
     });
 }
 
-function createVehicle(userId){
-
-}
-
 
 function updateVehicle(vehicleId){
 
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:8080/vehicles/api/vehicle?vehicleId='+vehicleId,
+        url: 'http://localhost:8080/admin/api/vehicle?vehicleId='+vehicleId,
         success: function(result){
             document.getElementById('vehicleId').value = result.vehicleId
             document.getElementById('plateNumber').value = result.plateNUmber;

@@ -206,7 +206,7 @@
             </div>
             <#-- Add actions -->
             <div class="modal-body">
-                <form id="editRepairForm" action="/admin/repairs/updateRepair" method="POST">
+                <form id="editRepairForm" action="/admin/repairs/updateFilteredRepair" method="POST">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">

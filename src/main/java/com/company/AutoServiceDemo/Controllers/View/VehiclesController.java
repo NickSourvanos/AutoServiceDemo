@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.sql.SQLException;
 import java.util.List;
 
 @Controller
@@ -30,24 +31,32 @@ public class  VehiclesController {
         User user = userService.getUserById(userId);
         List<Vehicle> vehicles = vehicleService.findAllByUser(user);
         model.addAttribute("vehicles", vehicles);
+        model.addAttribute("user", user);
         return "vehicles-page";
     }
 
     @PostMapping("/user/addVehicle")
     public String addVehicle(@Valid VehicleForm vehicle, BindingResult bindingResult){
         String redirect = "redirect:/admin/vehicles/user?id="+vehicle.getUser().toString();
+
         User user = userService.getUserById(vehicle.getUser());
         Vehicle newVehicle = new Vehicle();
 
-        if(bindingResult.hasErrors()){
+        try{
+
+            if(bindingResult.hasErrors()){
+                return redirect;
+            }
+            newVehicle.setPlateNUmber(vehicle.getPlateNUmber());
+            newVehicle.setYearOfManufacture(vehicle.getYearOfManufacture());
+            newVehicle.setModel(vehicle.getModel());
+            newVehicle.setColor(vehicle.getColor());
+            newVehicle.setUser(user);
+            vehicleService.saveVehicle(newVehicle);
+
+        }catch(Exception e){
             return redirect;
         }
-        newVehicle.setPlateNUmber(vehicle.getPlateNUmber());
-        newVehicle.setYearOfManufacture(vehicle.getYearOfManufacture());
-        newVehicle.setModel(vehicle.getModel());
-        newVehicle.setColor(vehicle.getColor());
-        newVehicle.setUser(user);
-        vehicleService.saveVehicle(newVehicle);
 
         return redirect;
     }
