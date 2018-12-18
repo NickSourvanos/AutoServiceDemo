@@ -54,7 +54,7 @@ function deleterepair(repairId){
             type: 'GET',
             url: 'http://localhost:8080/admin/api/repairs/deleteRepair?id='+repairId,
             success: function(){
-                populateTable();
+                populateRepairsTable();
             }
         });
     }
