@@ -6,4 +6,4 @@ $sidebarListItems.each(function () {
     if(window.location.pathname === link ){
         $(this).parent().addClass('active');
     }
-})
+});

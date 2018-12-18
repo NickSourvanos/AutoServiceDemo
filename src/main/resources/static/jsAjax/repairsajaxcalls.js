@@ -67,4 +67,4 @@ function updaterepair(repairId){
 
 $(document).ready(function () {
     populateRepairsTable();
-})
+});

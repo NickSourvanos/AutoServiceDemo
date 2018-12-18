@@ -36,7 +36,7 @@
                                             <!-- TODO: Add action -->
                                             <form id="searchDateForm" action="/admin/repairs/byDate" method="GET">
                                                 <input id="startDate" type="text" name="startDate"
-                                                       class="form-control form-control-sm mr-2 w-95" type="text"
+                                                       class="form-control form-control-sm mr-2 w-95"
                                                        placeholder="Start Date" aria-label="Search">
 
                                                 <input id="endDate" type="text" name="endDate"
@@ -47,8 +47,8 @@
                                         <div class="p-2 bd-highlight">
                                             <button class="btn" onclick="document.getElementById('searchDateForm').submit();">
                                                 <i class="fa fa-search" aria-hidden="true"></i>
-                                            </button></br>
-
+                                            </button>
+                                            <br/>
                                         </div>
 
 
@@ -69,7 +69,8 @@
                                         <div class="p-2 bd-highlight">
                                             <button class="btn" onclick="document.getElementById('afmSearchForm').submit();">
                                                 <i class="fa fa-search" aria-hidden="true"></i>
-                                            </button></br>
+                                            </button>
+                                            <br/>
                                             <button  type="submit" class="btn"
                                                     onclick="document.getElementById('plateSearchForm').submit();">
                                                 <i class="fa fa-search" aria-hidden="true"></i>
