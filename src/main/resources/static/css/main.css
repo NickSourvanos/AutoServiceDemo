@@ -1,0 +1,30 @@
+.sidebar:after,
+body>.navbar-collapse:after,
+.sidebar-wrapper {
+    background-color: #585858;
+}
+
+.logo {
+    text-align: center;
+}
+
+tbody {
+    display: block;
+    max-height: 400px;
+    overflow-y: scroll;
+}
+
+thead, tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.footer {
+    background-color: #E8E8E8;
+    max-height: 4.9em;
+}
+
+.modal-lg {
+    max-width: 80%;
+}

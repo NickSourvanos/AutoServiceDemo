@@ -9,34 +9,8 @@
 <body>
 
     <div class="wrapper">
-        <div class="sidebar">
-            <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
+        <#include "partials/sidebar.ftl">
 
-        Tip 2: you can also add an image using data-image tag
-    -->
-            <div class="sidebar-wrapper">
-                <div class="logo">
-                    <a href="" class="simple-text">
-
-                    </a>
-                </div>
-                <ul class="nav">
-                    <li class="active">
-                        <a class="nav-link" href="">
-                            <i class="nc-icon nc-notes"></i>
-                            <p>Users</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="userprofile.html">
-                            <i class="nc-icon nc-circle-09"></i>
-                            <p>Services</p>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
         <div class="main-panel">
             <!-- Navbar -->
             <nav class="navbar navbar-expand-lg " color-on-scroll="500">

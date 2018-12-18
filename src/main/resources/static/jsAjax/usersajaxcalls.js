@@ -67,3 +67,6 @@ function updateuser(userId){
     });
 }
 
+$(document).ready(function () {
+    populateTable();
+});
