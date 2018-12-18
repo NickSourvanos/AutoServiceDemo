@@ -1,6 +1,7 @@
 package com.company.AutoServiceDemo.Services;
 
 import com.company.AutoServiceDemo.Domain.User;
+import com.company.AutoServiceDemo.Domain.Vehicle;
 import com.company.AutoServiceDemo.Enums.RoleType;
 
 import java.util.List;
@@ -26,5 +27,7 @@ public interface UserService {
     List<User> getAllUsers();
 
     Optional<User> getUserByAfmAndEmail(String afm, String email);
+
+    User findUserByVehicles(Vehicle Vehicle);
 
 }

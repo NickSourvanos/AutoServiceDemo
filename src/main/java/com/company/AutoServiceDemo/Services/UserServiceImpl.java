@@ -1,6 +1,7 @@
 package com.company.AutoServiceDemo.Services;
 
 import com.company.AutoServiceDemo.Domain.User;
+import com.company.AutoServiceDemo.Domain.Vehicle;
 import com.company.AutoServiceDemo.Enums.RoleType;
 import com.company.AutoServiceDemo.Repository.UserRepository;
 
@@ -62,6 +63,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<User> getUserByAfmAndEmail(String afm, String email) {
         return userRepository.getUserByAfmAndEmail(afm, email);
+    }
+
+    @Override
+    public User findUserByVehicles(Vehicle vehicle) {
+        return userRepository.findUserByVehicles(vehicle);
     }
 
 

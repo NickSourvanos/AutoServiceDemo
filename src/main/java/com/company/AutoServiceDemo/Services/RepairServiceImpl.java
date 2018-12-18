@@ -63,6 +63,15 @@ public class RepairServiceImpl implements RepairService {
         repairRepository.delete(repair);
     }
 
+    @Override
+    public List<Repair> getRepairsByVehicle_PlateNUmber(String plateNumber) {
+        return repairRepository.getRepairsByVehicle_PlateNUmber(plateNumber);
+    }
+
+    @Override
+    public List<Repair> getRepairsByVehicle_User_Afm(String afm) {
+        return repairRepository.getRepairsByVehicle_User_Afm(afm);
+    }
 
     @Transactional
     public Repair saveRepair(Repair repair) {

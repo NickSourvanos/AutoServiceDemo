@@ -22,6 +22,9 @@ public interface RepairService {
 
     void delete(Repair repair);
 
+    List<Repair> getRepairsByVehicle_PlateNUmber(String plateNumber);
+
+    List<Repair> getRepairsByVehicle_User_Afm(String afm);
 
 
 

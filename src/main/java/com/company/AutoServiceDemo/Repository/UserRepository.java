@@ -1,6 +1,7 @@
 package com.company.AutoServiceDemo.Repository;
 
 import com.company.AutoServiceDemo.Domain.User;
+import com.company.AutoServiceDemo.Domain.Vehicle;
 import com.company.AutoServiceDemo.Enums.RoleType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -22,5 +23,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     User getUserById(Long id);
 
     Optional<User> getUserByAfmAndEmail(String afm, String email);
+
+    User findUserByVehicles(Vehicle Vehicle);
 
 }

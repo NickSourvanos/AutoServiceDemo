@@ -29,42 +29,53 @@
                                     <div class="d-flex bd-highlight mb-3">
                                         <div class="mr-auto p-2 bd-highlight">
                                             <h4 style="padding-bottom: 0.6em;" class="card-title">Repairs</h4>
-                                            <button id="addRepairtbtn" class="btn btn-primary"
-                                                    data-toggle="modal" data-target="#addRepairFormModal"
-                                                    onclick="populateParts()">
-                                                Add Repair
-                                            </button>
                                         </div>
+
+                                        <!--   Date picker   -->
+                                        <div class="p-2 bd-highlight">
+                                            <!-- TODO: Add action -->
+                                            <form id="searchDateForm" action="/admin/repairs/byDate" method="GET">
+                                                <input id="startDate" type="text" name="startDate"
+                                                       class="form-control form-control-sm mr-2 w-95" type="text"
+                                                       placeholder="Start Date" aria-label="Search">
+
+                                                <input id="endDate" type="text" name="endDate"
+                                                       class="form-control form-control-sm mr-5 w-95"
+                                                       placeholder="End Date" aria-label="Search">
+                                            </form>
+                                        </div>
+                                        <div class="p-2 bd-highlight">
+                                            <button class="btn" onclick="document.getElementById('searchDateForm').submit();">
+                                                <i class="fa fa-search" aria-hidden="true"></i>
+                                            </button></br>
+
+                                        </div>
+
 
                                         <!-- AFM Search Bar -->
                                         <div class="p-2 bd-highlight">
                                             <!-- TODO: Add action -->
-                                            <form id="afmSearchForm" action="" method="POST">
-                                                <input id="afmS" name="afmS"
+                                            <form id="afmSearchForm" action="/admin/repairs/byAfm" method="GET">
+                                                <input id="afm" name="afm"
                                                        class="form-control form-control-sm mr-2 w-95" type="text"
                                                        placeholder="AFM" aria-label="Search">
                                             </form>
-                                        </div>
-                                        <div class="p-2 bd-highlight">
-                                            <button class="btn" onclick="document.getElementById('').submit();">
-                                                <i class="fa fa-search" aria-hidden="true"></i>
-                                            </button>
-                                        </div>
-
-                                        <div class="p-2 bd-highlight">
-                                            <form id="emailSearchForm" action="/admin/user/emailSearch" method="POST">
-                                                <input id="emailS" type="email" name="emailS"
+                                            <form id="plateSearchForm" action="/admin/repairs/byPlate" method="GET">
+                                                <input id="plateNUmber" type="text" name="plateNUmber"
                                                        class="form-control form-control-sm mr-5 w-95"
-                                                       placeholder="Email" aria-label="Search">
+                                                       placeholder="Plate Number" aria-label="Search">
                                             </form>
                                         </div>
-
                                         <div class="p-2 bd-highlight">
-                                            <button type="submit" class="btn"
-                                                    onclick="document.getElementById('emailSearchForm').submit();">
+                                            <button class="btn" onclick="document.getElementById('afmSearchForm').submit();">
+                                                <i class="fa fa-search" aria-hidden="true"></i>
+                                            </button></br>
+                                            <button  type="submit" class="btn"
+                                                    onclick="document.getElementById('plateSearchForm').submit();">
                                                 <i class="fa fa-search" aria-hidden="true"></i>
                                             </button>
                                         </div>
+
                                     </div>
                                 </div>
                                 <div id="booksTable" class="card-body table-full-width table-responsive">
@@ -92,12 +103,6 @@
             </div>
         </div>
     </div>
-
-    <script>
-
-
-    </script>
-
 
     <div class="modal fade" id="addRepairFormModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg">
