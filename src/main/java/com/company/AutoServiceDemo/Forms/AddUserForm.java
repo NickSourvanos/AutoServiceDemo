@@ -7,18 +7,28 @@ import javax.validation.constraints.Size;
 
 public class AddUserForm {
 
+    //TODO: afm must be unique
     private static final String AFM_PATTERN = "[1-9]{9}";
 
-    private static final String PASSWORD_PATTERN = "^[a-zA-Z0-9@#$%^&]*$";
+    private static final String PASSWORD_PATTERN = "[a-zA-Z0-9@#$%^&]*$";
 
     private static final int PASSWORD_MINSIZE = 6;
+
+    private static final String MAIL_PATTERN = "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{1,63}$";
+
+    private static final String ADDRESS_PATTERN = "";
 
     @Pattern(regexp = AFM_PATTERN, message = "Invalid pattern")
     private String afm;
 
+    @Pattern(regexp = ADDRESS_PATTERN, message = "Invalid pattern")
     private String address;
+
+    @Pattern(regexp = MAIL_PATTERN, message = "Invalid Mail")
     private String email;
+
     private String firstName;
+
     private String lastName;
 
     @Pattern(regexp = PASSWORD_PATTERN, message = "Invalid Password")
