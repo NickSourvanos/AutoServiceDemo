@@ -289,7 +289,9 @@
     <#--});-->
 
     <!-- SCRIPTS  -->
+
     <#include "partials/common-scripts.ftl">
+    <script src="/jsAjax/usersajaxcalls.js" type="text/javascript"></script>
 
 </body>
 

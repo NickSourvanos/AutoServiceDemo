@@ -20,7 +20,4 @@
 <script src="/js/light-bootstrap-dashboard.js?v=2.0.1" type="text/javascript"></script>
 
 <!-- Custom AJAX calls-->
-<script src="/jsAjax/usersajaxcalls.js" type="text/javascript"></script>
-<script src="/jsAjax/repairsajaxcalls.js" type="text/javascript"></script>
-<script src="/jsAjax/vehiclesajaxcalls.js" type="text/javascript"></script>
 <script src="/jsAjax/main.js" type="text/javascript"></script>

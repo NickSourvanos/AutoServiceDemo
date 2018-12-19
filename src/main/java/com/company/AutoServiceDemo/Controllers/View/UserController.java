@@ -1,9 +1,11 @@
 package com.company.AutoServiceDemo.Controllers.View;
 
 import com.company.AutoServiceDemo.Domain.User;
+import com.company.AutoServiceDemo.Domain.Vehicle;
 import com.company.AutoServiceDemo.Forms.AddUserForm;
 import com.company.AutoServiceDemo.Repository.UserRepository;
 import com.company.AutoServiceDemo.Services.UserService;
+import com.company.AutoServiceDemo.Services.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -12,12 +14,16 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 
 @Controller
 @RequestMapping(value = "/admin/user")
 public class UserController {
+
+    @Autowired
+    private VehicleService vehicleService;
 
     @Autowired
     private UserService userService;
@@ -109,6 +115,12 @@ public class UserController {
     @GetMapping(value = "/deleteUser")
     public String deleteUser(User user){
         userService.deleteUser(user);
+        List<Vehicle> vehicles = vehicleService.findAllByUser(user);
+
+        for(Vehicle v : vehicles){
+            vehicleService.delete(v);
+        }
+
         return "redirect:/admin";
     }
 }

@@ -48,7 +48,7 @@
                     <div class="col-sm-12 col-md-12 col-lg-12">
                         <div class="card ">
                             <div class="card-header ">
-                                <h4 class="card-title">${user.getFirstName()} ${user.getLastName()}</h4></br>
+                                <h4 class="card-title"></h4></br>
                             </div>
                             <div id="booksTable" class="card-body table-full-width table-responsive">
                                 <table class="table table-hover">

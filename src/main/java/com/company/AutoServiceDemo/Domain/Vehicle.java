@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "VEHICLE", uniqueConstraints = @UniqueConstraint(columnNames = {"plate_number"}))
-public class Vehicle {
+public class  Vehicle {
 
     private static final int MAX_LENGTH = 40;
 
@@ -30,7 +30,7 @@ public class Vehicle {
     private String color;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "vehicle", targetEntity = Repair.class)
+    @OneToMany(mappedBy = "vehicle", targetEntity = Repair.class, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Repair> repairs;
 
     @ManyToOne

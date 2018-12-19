@@ -249,6 +249,7 @@
 
     <!-- SCRIPTS-->
     <#include "partials/common-scripts.ftl">
+    <script src="/jsAjax/repairsajaxcalls.js" type="text/javascript"></script>
 
 </body>
 

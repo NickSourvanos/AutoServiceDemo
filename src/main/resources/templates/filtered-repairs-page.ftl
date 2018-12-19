@@ -217,6 +217,7 @@
                                 <label for="repairDate">Date</label>
                                 <input type="text" id="repairDate" name="repairDate" class="form-control"
                                        placeholder="Enter Date" required="required">
+
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -271,6 +272,7 @@
 
 <!-- SCRIPTS-->
 <#include "partials/common-scripts.ftl">
+<script src="/jsAjax/repairsajaxcalls.js"></script>
 
 </body>
 
