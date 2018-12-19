@@ -61,7 +61,7 @@
                                         <th>Status</th>
                                     </tr>
                                     </thead>
-                                    <tbody id="usersList">
+                                    <tbody>
 
                                     <!-- #lt iteration here -->
                                     <#list repairs as repair>

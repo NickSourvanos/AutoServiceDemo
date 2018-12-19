@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping(value = "/admin/user")
-public class EditUserController {
+public class UserController {
 
     @Autowired
     private UserService userService;
@@ -31,7 +31,7 @@ public class EditUserController {
         if (bindingResult.hasErrors()) {
             //have some error handling here, perhaps add extra error messages to the model
             model.addAttribute("message", "an error occurred");
-            return "redirect:/admin-page";
+            return "redirect:/admin";
         }
 
         User newUser = new User();
@@ -50,7 +50,7 @@ public class EditUserController {
             model.addAttribute("message", "Success");
         }
 
-        return "redirect:/admin-page";
+        return "redirect:/admin";
     }
 
     @PostMapping("/emailSearch")

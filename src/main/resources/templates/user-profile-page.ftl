@@ -159,7 +159,7 @@
                                         <th>Delete</th>
                                     </tr>
                                     </thead>
-                                    <tbody id="usersList">
+                                    <tbody >
                                         <tr>
                                             <td>${user.getFirstName()}</td>
                                             <td>${user.getLastName()}</td>

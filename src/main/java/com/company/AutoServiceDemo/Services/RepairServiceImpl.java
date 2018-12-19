@@ -44,8 +44,8 @@ public class RepairServiceImpl implements RepairService {
     }
 
     @Override
-    public List<Repair> findByRepairDateBetween(String startDate, String endDate) {
-        return repairRepository.findByRepairDateBetween(startDate, endDate);
+    public List<Repair> findRepairsByRepairDateBetween(String startDate, String endDate) {
+        return repairRepository.findRepairsByRepairDateBetween(startDate, endDate);
     }
 
     @Override

@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/admin/api")
-public class GetVehiclesController {
+public class VehiclesRestController {
 
     @Autowired
     private VehicleService vehicleService;

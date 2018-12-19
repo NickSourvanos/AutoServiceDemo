@@ -17,7 +17,7 @@ function populateVehiclesTable(){
                     '</button>' +
                     '</td>';
                 vehicles_data += '<td style="padding-left: 1.5em;">' +
-                    '<form action="/admin/vehicle/deleteVehicle" method="GET">' +
+                    '<form action="/admin/vehicles/deleteVehicle" method="GET">' +
                     '<input type="hidden" name="vehicleId" value="' + d.vehicleId + '"/> '+
                     '<button class="btn" type="submit" >'+
                     '<i class="fa fa-remove" style="font-size:24px; text-align: center"></i>'+

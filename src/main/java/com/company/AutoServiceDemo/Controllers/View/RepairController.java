@@ -18,14 +18,23 @@ import java.util.List;
 public class RepairController {
 
     @Autowired
-    private RepairService repairService;
+    private UserService userService;
 
     @Autowired
-    private UserService userService;
+    private RepairService repairService;
 
     @Autowired
     private VehicleService vehicleService;
 
+    /* CREATE Repair */
+    @PostMapping(value = "/repairs/createRepair")
+    public String createRepair(@ModelAttribute("repair") Repair repair){
+
+        repairService.saveRepair(repair);
+        return "redirect:/admin";
+    }
+
+    /* READ User's Repairs */
     @GetMapping(value = "/repairs/user")
     public String getRepairsByUser(Model model, @RequestParam("id") Long useId){
 
@@ -35,39 +44,8 @@ public class RepairController {
         return "repairs-page";
     }
 
-    @PostMapping(value = "/repairs/createRepair")
-    public String createRepair(@ModelAttribute("repair") Repair repair){
-        repairService.saveRepair(repair);
-        return "redirect:/admin";
-    }
 
-    @PostMapping(value = "/repairs/updateRepair")
-    public String updateRepair(@RequestParam("vehicleId") Long id,  Repair repair){
-
-        Vehicle vehicle = vehicleService.getVehicleByVehicleId(id);
-        System.out.println(vehicle.getVehicleId());
-        Repair newRepair = new Repair();
-        newRepair.setRepairId(repair.getRepairId());
-        newRepair.setVehicle(vehicle);
-        newRepair.setCost(repair.getCost());
-        newRepair.setDescription(repair.getDescription());
-        newRepair.setRepairDate(repair.getRepairDate());
-        newRepair.setRepairType(repair.getRepairType());
-        newRepair.setStatus(repair.getStatus());
-
-        repairService.saveRepair(newRepair);
-        return "redirect:/admin/repairs";
-    }
-
-    @GetMapping(value = "/repairs/byDate")
-    public String getRepairsByDateRange(Model model, @RequestParam("startDate") String sDate,@RequestParam("endDate") String eDate) {
-
-        List<Repair> repairs = repairService.findByRepairDateBetween(sDate,eDate);
-        model.addAttribute("repairs", repairs);
-
-        return "filtered-repairs-page";
-    }
-
+    /* READ Repairs by AFM */
     @GetMapping(value = "/repairs/byAfm")
     public String getRepairsByAfm(Model model, @RequestParam("afm") String afm) {
 
@@ -87,11 +65,11 @@ public class RepairController {
                 return "redirect:/admin/repairs";
             }
         }
-
-
         return "redirect:/admin/repairs";
     }
 
+
+    /* READ Repairs by Plate Number */
     @GetMapping(value = "/repairs/byPlate")
     public String getRepairsByPlate(Model model, @RequestParam("plateNUmber") String plate) {
 
@@ -112,18 +90,22 @@ public class RepairController {
             }
 
         }
-
-
         return "redirect:/admin/repairs";
     }
 
-    @PostMapping(value = "/repairs/updateFilteredRepair")
-    public String updateFilteredRepair(@RequestParam("vehicleId") Long id,
-                        @RequestParam("startDate") String startDate,
-                        @RequestParam("endDate") String endDate,  Repair repair){
+    /* READ Repairs by Date range */
+    @GetMapping(value = "/repairs/byDate")
+    public String getRepairsByDateRange(Model model, @RequestParam("startDate") String sDate,@RequestParam("endDate") String eDate) {
 
-        String redirect = "admin/repairs/byDate?startDate=" + startDate +
-                "&endDate=" + endDate;
+        List<Repair> repairs = repairService.findRepairsByRepairDateBetween(sDate,eDate);
+        model.addAttribute("repairs", repairs);
+
+        return "filtered-repairs-page";
+    }
+
+    /* UPDATE User's Repair */
+    @PostMapping(value = "/repairs/updateRepair")
+    public String updateRepair(@RequestParam("vehicleId") Long id,  Repair repair){
 
         Vehicle vehicle = vehicleService.getVehicleByVehicleId(id);
         System.out.println(vehicle.getVehicleId());
@@ -137,6 +119,32 @@ public class RepairController {
         newRepair.setStatus(repair.getStatus());
 
         repairService.saveRepair(newRepair);
-        return redirect;
+        return "redirect:/admin/repairs";
     }
+
+//    /* Return Services in the range, modify them and return in the same view */
+//    @PostMapping(value = "/repairs/updateFilteredRepair")
+//    public String updateFilteredRepair(@RequestParam("vehicleId") Long id,
+//                        @RequestParam("startDate") String startDate,
+//                        @RequestParam("endDate") String endDate,  Repair repair){
+//
+//        String redirect = "admin/repairs/byDate?startDate=" + startDate +
+//                "&endDate=" + endDate;
+//
+//        Vehicle vehicle = vehicleService.getVehicleByVehicleId(id);
+//        System.out.println(vehicle.getVehicleId());
+//
+//        Repair newRepair = new Repair();
+//        newRepair.setRepairId(repair.getRepairId());
+//        newRepair.setVehicle(vehicle);
+//        newRepair.setCost(repair.getCost());
+//        newRepair.setDescription(repair.getDescription());
+//        newRepair.setRepairDate(repair.getRepairDate());
+//        newRepair.setRepairType(repair.getRepairType());
+//        newRepair.setStatus(repair.getStatus());
+//
+//        repairService.saveRepair(newRepair);
+//        return redirect;
+//    }
+
 }

@@ -58,9 +58,8 @@ function updaterepair(repairId){
             document.getElementById('repairDate').value = result.repairDate;
             document.getElementById('cost').value = result.cost;
             document.getElementById('description').value = result.description;
-            document.getElementById('repairStatus').value = result.status;
+            document.getElementById('status').value = result.status;
             document.getElementById('repairType').value = result.repairType;
-            document.getElementById('partsListEditForm').value = result.part.type;
         }
     });
 }

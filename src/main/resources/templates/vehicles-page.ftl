@@ -99,29 +99,12 @@
                                                     </button>
                                                 </td>
                                                 <td style="padding-left: 1.5em;">
-                                                <form action="/admin/vehicle/deleteVehicle" method="GET">
+                                                <form action="/admin/vehicles/deleteVehicle" method="GET">
                                                     <input type="hidden" name="vehicleId" value="${vehicle.getVehicleId()}"/>
                                                     <button class="btn" type="submit" >
                                                         <i class="fa fa-remove" style="font-size:24px; text-align: center"></i>
                                                         </button></form>
                                                 </td>
-
-                                            <!--
-                                            vehicles_data += '<td style="padding-left: 1.5em;">' +
-                                                '<button class="btn" data-toggle="modal" data-target="#editVehicle" ' +
-                                                'onclick="updateVehicle(' + d.vehicleId + ')" >'+
-                                                '<i class="fa fa-edit" style="font-size:24px; text-align: center"></i>'+
-                                                '</button>' +
-                                                '</td>';
-                                            vehicles_data += '<td style="padding-left: 1.5em;">' +
-                                                '<form action="/vehicles/vehicle/deleteVehicle" method="GET">' +
-                                                '<input type="hidden" name="vehicleId" value="' + d.vehicleId + '"/> '+
-                                                '<button class="btn" type="submit" >'+
-                                                '<i class="fa fa-remove" style="font-size:24px; text-align: center"></i>'+
-                                                '</button></form>' +
-                                                '</td>';
-                                            -->
-
                                             </tr>
 
                                         </#list>
@@ -233,7 +216,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="addVehicleForm" name="addVehicleForm" class="form-horizontal" action="/admin/vehicles/user/addVehicle" method="POST">
+            <form id="addVehicleForm" name="addVehicleForm" class="form-horizontal" action="/createVehicle" method="POST">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
@@ -287,7 +270,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="editVehicleForm" action="/admin/updateVehicle" method="POST">
+            <form id="editVehicleForm" action="/admin/vehicles/updateVehicle" method="POST">
 
                 <div class="modal-body">
                     <div class="row">
