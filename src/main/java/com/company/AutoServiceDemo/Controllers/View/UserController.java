@@ -5,6 +5,7 @@ import com.company.AutoServiceDemo.Forms.AddUserForm;
 import com.company.AutoServiceDemo.Repository.UserRepository;
 import com.company.AutoServiceDemo.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,6 +25,9 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @PostMapping(value = "/createUser")
     public String createUser(@Valid  @ModelAttribute("addUserForm") AddUserForm userForm,
                              BindingResult bindingResult, Model model){
@@ -40,7 +44,7 @@ public class UserController {
         newUser.setEmail(userForm.getEmail());
         newUser.setFirstName(userForm.getFirstName());
         newUser.setLastName(userForm.getAfm());
-        newUser.setPassword(userForm.getPassword());
+        newUser.setPassword(passwordEncoder.encode(userForm.getPassword()));
         newUser.setRoleType(userForm.getRoleType());
 
         Optional<User> dublicateUser = userRepository.getUserByAfmAndEmail(userForm.getAfm(), userForm.getEmail());

@@ -34,16 +34,6 @@ public class RepairController {
         return "redirect:/admin";
     }
 
-    /* READ User's Repairs */
-    @GetMapping(value = "/repairs/user")
-    public String getRepairsByUser(Model model, @RequestParam("id") Long useId){
-
-        User user = userService.getUserById(useId);
-        List<Repair> repairs = repairService.getRepairsByUser(user);
-        model.addAttribute("repairs", repairs);
-        return "repairs-page";
-    }
-
 
     /* READ Repairs by AFM */
     @GetMapping(value = "/repairs/byAfm")

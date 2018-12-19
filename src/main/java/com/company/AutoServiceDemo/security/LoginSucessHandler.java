@@ -19,7 +19,7 @@ import java.util.Collection;
 public class LoginSucessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 
     private static final String TIMESTAMP_COOKIE_NAME = "TIMESTAMP";
-    private static final String USER_HOME_PAGE_URL = "/user";
+    private static final String USER_HOME_PAGE_URL = "/user/repairs";
     private static final String ADMIN_HOME_PAGE_URL = "/admin";
 
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
@@ -35,6 +35,10 @@ public class LoginSucessHandler extends SavedRequestAwareAuthenticationSuccessHa
         for (GrantedAuthority grantedAuthority : authorities) {
             if (grantedAuthority.getAuthority().equals(RoleType.ADMIN_ROLE.name())) {
                 redirectUrl = ADMIN_HOME_PAGE_URL;
+            }
+
+            if(grantedAuthority.getAuthority().equals(RoleType.SIMPLE_USER_ROLE.name())){
+                redirectUrl = USER_HOME_PAGE_URL;
             }
         }
         redirectStrategy.sendRedirect(request, response, redirectUrl);

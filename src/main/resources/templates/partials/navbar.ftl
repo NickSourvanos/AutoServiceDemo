@@ -15,12 +15,11 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <form id="formid" action="" method="POST">
-                        <a class="nav-link" onclick="document.getElementById('formid').submit()"
-                           href="">
+
+                        <a class="nav-link" href="/logout">
                             <span class="no-icon">Log out</span>
                         </a>
-                    </form>
+
                 </li>
             </ul>
         </div>

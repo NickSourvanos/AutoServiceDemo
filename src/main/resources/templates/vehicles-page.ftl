@@ -216,14 +216,13 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="addVehicleForm" name="addVehicleForm" class="form-horizontal" action="/createVehicle" method="POST">
+            <form id="addVehicleForm" name="addVehicleForm" class="form-horizontal" action="/admin/vehicles/createVehicle" method="POST">
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <#list vehicles as v>
-                                    <input id="user" type="hidden" name="user" value="${v.getUser().getId()}"/>
-                                </#list>
+                                <input id="user" type="hidden" name="user" value="${user.getId()}"/>
+
                                 <label for="plateNumber">Plate Number</label>
                                 <input type="text" name="plateNUmber" class="form-control" placeholder="Enter plate number" required="true">
                             </div>

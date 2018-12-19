@@ -92,12 +92,13 @@ public class  VehiclesController {
     @GetMapping("/deleteVehicle")
     public String deleteVehicle(@RequestParam("vehicleId") Long vehicleId){
         Vehicle v = vehicleService.getVehicleByVehicleId(vehicleId);
+        String redirect = "redirect:/admin/vehicles/user?id=" + v.getUser().getId();
         List<Repair> repairs = repairService.getRepairsByVehicle(v);
         for(Repair r : repairs){
             repairService.delete(r);
         }
         vehicleService.delete(v);
-        return "redirect:/vehicles-list-page";
+        return redirect;
     }
 
 }
