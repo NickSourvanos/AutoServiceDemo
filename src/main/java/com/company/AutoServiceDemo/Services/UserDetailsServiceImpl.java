@@ -27,7 +27,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 /*        List<SimpleGrantedAuthority> authorization = Collections.singletonList(new SimpleGrantedAuthority("ADMIN"));
         CharSequence password = "password";*/
 
-        return new LoginResponse(user.getEmail(), user.getPassword(), Arrays.asList(new SimpleGrantedAuthority(user.getRoleType().name())));
+        return new LoginResponse(user.getId(), user.getEmail(), user.getPassword(), Arrays.asList(new SimpleGrantedAuthority(user.getRoleType().name())));
 
 
     }

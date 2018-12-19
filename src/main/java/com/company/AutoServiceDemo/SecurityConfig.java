@@ -1,7 +1,7 @@
 package com.company.AutoServiceDemo;
 
 import com.company.AutoServiceDemo.Services.UserDetailsServiceImpl;
-import com.company.AutoServiceDemo.security.LoginSucessHandler;
+import com.company.AutoServiceDemo.security.LoginSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -16,7 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private LoginSucessHandler loginSucessHandler;
+    private LoginSuccessHandler loginSuccessHandler;
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -40,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .formLogin()//.loginPage("/login")
-                .successHandler(loginSucessHandler)
+                .successHandler(loginSuccessHandler)
                 .failureUrl("/login?error=true")
                 .and()
                 .logout()
