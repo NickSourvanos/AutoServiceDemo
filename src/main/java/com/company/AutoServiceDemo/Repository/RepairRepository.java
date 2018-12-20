@@ -18,7 +18,7 @@ public interface RepairRepository extends JpaRepository<Repair, Long> {
 
 
 
-    List<Repair> findFirst10ByOrderByRepairDateAsc();
+    List<Repair> findFirst10ByOrderByRepairDateDesc();
 
     Repair save(Repair repair);
 

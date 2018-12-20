@@ -49,8 +49,8 @@ public class RepairServiceImpl implements RepairService {
     }
 
     @Override
-    public List<Repair> findFirst10ByOrderByRepairDateAsc() {
-        return repairRepository.findFirst10ByOrderByRepairDateAsc();
+    public List<Repair> findFirst10ByOrderByRepairDateDesc() {
+        return repairRepository.findFirst10ByOrderByRepairDateDesc();
     }
 
     @Override

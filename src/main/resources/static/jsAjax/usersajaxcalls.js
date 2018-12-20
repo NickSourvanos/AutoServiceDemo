@@ -56,13 +56,8 @@ function updateuser(userId){
             document.getElementById('firstName').value = result.firstName;
             document.getElementById('lastName').value = result.lastName;
             document.getElementById('address').value = result.address;
-            document.getElementById('password').value = result.password;
-            document.getElementById('password2').value = result.password2;
-            if(result.role === "SIMPLE_ROLE_TYPE"){
-                document.getElementsByName('role').value = "SIMPLE_USER_ROLE";
-            }if(result.role === "ADMIN_ROLE"){
-                document.getElementsByName('role').value = "ADMIN_ROLE";
-            }
+            document.getElementById('roleType').value = result.roleType;
+
         }
     });
 }

@@ -173,12 +173,12 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="roleType">Role
+                                    <label for="roleType">Role</label>
                                         <select name="roleType" class="form-control">
                                             <option name="admin" value="ADMIN_ROLE">Admin</option>
                                             <option name="simpleUser" value="SIMPLE_USER_ROLE">User</option>
                                         </select>
-                                    </label>
+
                                 </div>
                             </div>
                         </div>
@@ -240,22 +240,6 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="password">Password</label>
-                                    <input id="password" type="password" name="password" class="form-control"
-                                           placeholder="Enter password" required="required">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="password2">Re-enter password</label>
-                                    <input id="password2" type="password" name="password2" class="form-control"
-                                           placeholder="Re-enter password" required="required">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
                                     <label for="address">Address</label>
                                     <input id="address" type="text" name="address" class="form-control"
                                            placeholder="Enter address" required="required">
@@ -263,12 +247,12 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="roleType">Role
-                                        <select name="roleType" class="form-control">
-                                            <option name="admin" value="ADMIN_ROLE">Admin</option>
-                                            <option name="user" value="SIMPLE_USER_ROLE">User</option>
+                                    <label for="roleType">Role</label>
+                                        <select id="roleType" name="roleType" class="form-control">
+                                            <option value="ADMIN_ROLE">Admin</option>
+                                            <option value="SIMPLE_USER_ROLE">User</option>
                                         </select>
-                                    </label>
+
                                 </div>
                             </div>
                         </div>

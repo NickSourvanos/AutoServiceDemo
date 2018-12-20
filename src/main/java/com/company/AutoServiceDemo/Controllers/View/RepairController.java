@@ -47,9 +47,8 @@ public class RepairController {
                 if(!user.getAfm().isEmpty()){
                     List<Repair> repairs = repairService.getRepairsByVehicle_User_Afm(afm);
                     model.addAttribute("repairs", repairs);
-                    model.addAttribute("firstName", user.getFirstName());
-                    model.addAttribute("lastName", user.getLastName());
-                    return "repairs-page";
+                    model.addAttribute("user", user);
+                    return "repairs-page-admin";
                 }
 
             }catch(NullPointerException e){
@@ -71,9 +70,8 @@ public class RepairController {
                     User user = userService.findUserByVehicles(vehicle);
                     List<Repair> repairs = repairService.getRepairsByVehicle_PlateNUmber(plate);
                     model.addAttribute("repairs", repairs);
-                    model.addAttribute("firstName", user.getFirstName());
-                    model.addAttribute("lastName", user.getLastName());
-                    return "repairs-page";
+                    model.addAttribute("user", user);
+                    return "repairs-page-admin";
                 }
 
             }catch(NullPointerException e){

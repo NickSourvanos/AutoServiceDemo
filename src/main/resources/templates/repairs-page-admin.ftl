@@ -9,7 +9,7 @@
 
 <div class="wrapper">
 
-   <#include "partials/user-sidebar.ftl">
+   <#include "partials/sidebar.ftl">
 
     <div class="main-panel">
         <!-- Navbar -->

@@ -16,7 +16,7 @@ public class RepairsRestController {
 
     @GetMapping(value = "/repairs")
     public List<Repair> last10Repairs(){
-        return repairService.findFirst10ByOrderByRepairDateAsc();
+        return repairService.findFirst10ByOrderByRepairDateDesc();
     }
 
     @GetMapping(value = "/repair")

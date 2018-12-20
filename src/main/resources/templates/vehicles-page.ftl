@@ -186,14 +186,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="partTypeListAddForm">Part Type</label>
-                                <fieldset id="partsListAddForm">
-                                    <#-- Parts get populated here -->
-                                </fieldset>
-                            </div>
-                        </div>
+
                     </div>
 
             </div>
@@ -314,5 +307,6 @@
 </div>
 
     <#include "partials/common-scripts.ftl">
+<script src="/jsAjax/vehiclesajaxcalls.js"></script>
 </body>
 </html>

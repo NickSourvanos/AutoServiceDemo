@@ -52,7 +52,6 @@ function updaterepair(repairId){
         type: 'GET',
         url: 'http://localhost:8080/admin/api/repair?id='+repairId,
         success: function(result){
-            alert(result.vehicle.vehicleId);
             document.getElementById('vehicleId').value = result.vehicle.vehicleId;
             document.getElementById('repairId').value = repairId;
             document.getElementById('repairDate').value = result.repairDate;

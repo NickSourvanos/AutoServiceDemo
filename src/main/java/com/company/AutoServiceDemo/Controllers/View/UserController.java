@@ -16,11 +16,14 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 
 @Controller
 @RequestMapping(value = "/admin/user")
 public class UserController {
+
+    private Logger logger = Logger.getLogger(getClass().getName());
 
     @Autowired
     private VehicleService vehicleService;
@@ -44,20 +47,33 @@ public class UserController {
             return "redirect:/admin";
         }
 
-        User newUser = new User();
-        newUser.setAfm(userForm.getAfm());
-        newUser.setAddress(userForm.getAddress());
-        newUser.setEmail(userForm.getEmail());
-        newUser.setFirstName(userForm.getFirstName());
-        newUser.setLastName(userForm.getAfm());
-        newUser.setPassword(passwordEncoder.encode(userForm.getPassword()));
-        newUser.setRoleType(userForm.getRoleType());
+        try{
 
-        Optional<User> dublicateUser = userRepository.getUserByAfmAndEmail(userForm.getAfm(), userForm.getEmail());
+            User existingUser = userRepository.findUserByEmail(userForm.getEmail());
+            String existingEmail = existingUser.getEmail();
+            String existingAfm = existingUser.getAfm();
 
-        if(dublicateUser.isEmpty()){
-            userService.saveUser(newUser);
-            model.addAttribute("message", "Success");
+            User newUser = new User();
+            newUser.setAfm(userForm.getAfm());
+            newUser.setAddress(userForm.getAddress());
+            newUser.setEmail(userForm.getEmail());
+            newUser.setFirstName(userForm.getFirstName());
+            newUser.setLastName(userForm.getLastName());
+            newUser.setPassword(passwordEncoder.encode(userForm.getPassword()));
+            newUser.setRoleType(userForm.getRoleType());
+
+            if(existingEmail.isEmpty() && existingAfm.isEmpty()){
+                userService.saveUser(newUser);
+                logger.info("Success!");
+
+                return "redirect:/admin";
+            }else{
+                logger.info("Afm or Email already exists!");
+            }
+
+        }catch (Exception e){
+            logger.info("Afm or Email already exists!");
+            return "redirect:/admin";
         }
 
         return "redirect:/admin";
@@ -65,33 +81,68 @@ public class UserController {
 
     @PostMapping("/emailSearch")
     public String getUserProfileByEmail(@RequestParam("emailS") String email, Model model){
-        User user = userService.findUserByEmail(email);
-        model.addAttribute("user", user);
+
+        try{
+            User user = userService.findUserByEmail(email);
+            if(user.getEmail().isEmpty()){
+                return "redirect:/admin";
+            }
+            model.addAttribute("user", user);
+
+        }catch(NullPointerException e){
+            return "redirect:/admin";
+        }
+
         return "user-profile-page";
     }
 
     @PostMapping("/afmSearch")
     public String getUserProfileByAfm(@RequestParam("afmS") String afm, Model model){
-        User user = userService.findUserByAfm(afm);
 
-        model.addAttribute("user", user);
+        try{
+            User user = userService.findUserByAfm(afm);
+            if(user.getAfm().isEmpty()){
+                return "redirect:/admin";
+            }
+            model.addAttribute("user", user);
+        }catch(NullPointerException e){
+            return "redirect:/admin";
+        }
+
         return "user-profile-page";
     }
 
     @PostMapping("/updateUser")
     public String updateUser(User user){
 
-        User newUser = userService.getUserById(user.getId());
+        try{
 
-        newUser.setAfm(user.getAfm());
-        newUser.setEmail(user.getEmail());
-        newUser.setAddress(user.getAddress());
-        newUser.setFirstName(user.getFirstName());
-        newUser.setLastName(user.getLastName());
-        newUser.setPassword(user.getPassword());
-        newUser.setRoleType(user.getRoleType());
+            User existingUser = userRepository.findUserByEmail(user.getEmail());
+            String existingEmail = existingUser.getEmail();
+            String existingAfm = existingUser.getAfm();
 
-        userRepository.save(user);
+            User newUser = new User();
+            newUser.setAfm(user.getAfm());
+            newUser.setAddress(user.getAddress());
+            newUser.setEmail(user.getEmail());
+            newUser.setFirstName(user.getFirstName());
+            newUser.setLastName(user.getLastName());
+            newUser.setPassword(user.getPassword());
+            newUser.setRoleType(user.getRoleType());
+
+            if(existingEmail.isEmpty() && existingAfm.isEmpty()){
+                userService.saveUser(newUser);
+                logger.info("success");
+                return "redirect:/admin";
+            }else {
+                logger.info("Afm or Email already exists!");
+            }
+
+        }catch (Exception e){
+            logger.info("Afm or Email already exists!");
+            return "redirect:/admin";
+        }
+
         return "redirect:/admin";
     }
 
